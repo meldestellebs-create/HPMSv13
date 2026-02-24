@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bildungswege Baden-Württemberg - Interaktives Tool – index_v12_updated</title>
+<title>Bildungswege Baden-Württemberg - Interaktives Tool – index_v13_Tab_Support</title>
 <style>
 * { 
   margin: 0; 
@@ -690,6 +690,7 @@ body {
   <button class="tab-button" onclick="switchTab('ausbildungssuche')">🔍 Ausbildungssuche</button>
   <button class="tab-button" onclick="switchTab('schulmatrix')">🏫 Schulen-Matrix</button>
   <button class="tab-button" onclick="switchTab('neu-in-stuttgart')">🌍 Neu in Stuttgart</button>
+  <button class="tab-button" onclick="switchTab('unterstuetzung')">🤝 Unterstützungsmöglichkeiten</button>
 </div>
 
 <!-- ==================== TAB 1: Bildungswege Tool ==================== -->
@@ -5995,4 +5996,855 @@ document.addEventListener('DOMContentLoaded', function() {
         <h3>Migranten-Vereine Stuttgart</h3>
         <p>Karte aller Migranten-Vereine mit Angeboten für Kinder und Jugendliche, inkl. Muttersprach-Unterricht.</p>
         <div class="nis-card-links">
-          <a href="https://house-of-resources-stuttgart.de/stadtteilkarte-kontakt-zu-vereinen/" target="_blank" rel="noopener" class="nis-link nis-link-ext">🗺�
+                    <a href="https://house-of-resources-stuttgart.de/stadtteilkarte-kontakt-zu-vereinen/" target="_blank" rel="noopener" class="nis-link nis-link-ext">🗺️ Stadtteilkarte Vereine</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- end neu-in-stuttgart-tab -->
+
+<!-- ==================== TAB: Unterstützungsmöglichkeiten ==================== -->
+<div id="unterstuetzung-tab" class="tab-content">
+
+<style>
+/* ====== UNTERSTUETZUNG TAB STYLES ====== */
+.um-hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+  padding: 40px 32px 32px;
+  border-radius: 0;
+  margin: -20px -20px 0;
+  position: relative;
+  overflow: hidden;
+}
+.um-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(229,57,53,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.um-hero-title {
+  font-family: 'Georgia', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+}
+.um-hero-sub {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.95rem;
+  margin: 0 0 24px;
+}
+.um-mode-switcher {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.um-mode-btn {
+  padding: 10px 20px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 30px;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+.um-mode-btn.active, .um-mode-btn:hover {
+  background: #e53935;
+  border-color: #e53935;
+  color: #fff;
+}
+
+/* Finder mode */
+.um-finder {
+  padding: 28px 20px;
+}
+.um-finder-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 6px;
+}
+.um-finder-sub {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0 0 24px;
+}
+.um-question-block {
+  background: #fff;
+  border: 2px solid #e8eaf6;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(26,26,46,0.06);
+}
+.um-question-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #e53935;
+  margin-bottom: 10px;
+}
+.um-question-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+.um-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.um-choice-btn {
+  padding: 10px 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background: #fafafa;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  text-align: left;
+  line-height: 1.3;
+}
+.um-choice-btn:hover {
+  border-color: #1a237e;
+  background: #e8eaf6;
+  color: #1a237e;
+}
+.um-choice-btn.selected {
+  border-color: #e53935;
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* Result cards */
+.um-results {
+  padding: 0 20px 28px;
+  display: none;
+}
+.um-results.visible { display: block; }
+.um-results-header {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.um-results-count {
+  background: #e53935;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 2px 10px;
+}
+.um-results-sub {
+  color: #777;
+  font-size: 0.85rem;
+  margin: 0 0 18px;
+}
+.um-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+.um-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 2px solid #e8eaf6;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(26,26,46,0.06);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.um-card:hover {
+  border-color: #1a237e;
+  box-shadow: 0 6px 20px rgba(26,26,46,0.12);
+  transform: translateY(-2px);
+}
+.um-card.expanded {
+  border-color: #e53935;
+  grid-column: 1 / -1;
+}
+.um-card-phase {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.phase-vor { background: #e3f2fd; color: #1565c0; }
+.phase-wäh { background: #e8f5e9; color: #2e7d32; }
+.phase-spra { background: #fff3e0; color: #e65100; }
+.phase-frei { background: #f3e5f5; color: #6a1b9a; }
+.phase-unter { background: #fce4ec; color: #880e4f; }
+.um-card-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+.um-card-ziel {
+  font-size: 0.82rem;
+  color: #555;
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+.um-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.um-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: #f0f0f0;
+  color: #444;
+}
+.um-tag.alter { background: #e3f2fd; color: #1565c0; }
+.um-tag.zugang { background: #e8f5e9; color: #2e7d32; }
+.um-tag.geld { background: #fff8e1; color: #f57f17; }
+.um-card-expand-hint {
+  font-size: 0.78rem;
+  color: #999;
+  font-style: italic;
+}
+.um-card-detail {
+  display: none;
+  border-top: 2px solid #f0f0f0;
+  margin-top: 14px;
+  padding-top: 14px;
+}
+.um-card.expanded .um-card-detail { display: block; }
+.um-detail-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.um-detail-label {
+  font-weight: 700;
+  color: #1a1a2e;
+  min-width: 90px;
+  flex-shrink: 0;
+}
+.um-detail-value { color: #444; }
+.um-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 16px 0 0;
+  padding: 10px 20px;
+  background: #1a237e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.um-reset-btn:hover { background: #283593; }
+.um-no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 0.95rem;
+}
+
+/* Overview table mode */
+.um-overview {
+  padding: 20px;
+  display: none;
+}
+.um-overview.visible { display: block; }
+.um-overview-search {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.um-overview-search:focus {
+  outline: none;
+  border-color: #1a237e;
+}
+.um-section-heading {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 24px 0 10px;
+  padding-left: 12px;
+  border-left: 4px solid #e53935;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.um-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+.um-table th {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.um-table th:first-child { border-radius: 8px 0 0 0; }
+.um-table th:last-child { border-radius: 0 8px 0 0; }
+.um-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+  color: #333;
+}
+.um-table tr:nth-child(even) td { background: #fafafa; }
+.um-table tr:hover td { background: #e8eaf6; }
+.um-table tr.hidden-row { display: none; }
+.um-tr-name { font-weight: 700; color: #1a237e; }
+
+/* Berater-Profil mode */
+.um-berater {
+  padding: 20px;
+  display: none;
+}
+.um-berater.visible { display: block; }
+.um-berater-intro {
+  background: linear-gradient(135deg, #0f3460, #16213e);
+  color: #fff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.um-berater-intro strong { color: #ff9800; }
+.um-flow-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.um-flow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.um-flow-card {
+  border-radius: 12px;
+  padding: 18px;
+  border-left: 5px solid;
+}
+.um-flow-card.blue { background: #e3f2fd; border-color: #1565c0; }
+.um-flow-card.green { background: #e8f5e9; border-color: #2e7d32; }
+.um-flow-card.orange { background: #fff3e0; border-color: #e65100; }
+.um-flow-card.purple { background: #f3e5f5; border-color: #6a1b9a; }
+.um-flow-card.red { background: #fce4ec; border-color: #880e4f; }
+.um-flow-card-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  color: inherit;
+}
+.um-flow-card.blue .um-flow-card-title { color: #1565c0; }
+.um-flow-card.green .um-flow-card-title { color: #2e7d32; }
+.um-flow-card.orange .um-flow-card-title { color: #e65100; }
+.um-flow-card.purple .um-flow-card-title { color: #6a1b9a; }
+.um-flow-card.red .um-flow-card-title { color: #880e4f; }
+.um-flow-item {
+  font-size: 0.83rem;
+  color: #333;
+  padding: 3px 0 3px 14px;
+  position: relative;
+  line-height: 1.4;
+}
+.um-flow-item::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #999;
+  font-size: 0.75rem;
+}
+</style>
+
+<div class="um-hero">
+  <div class="um-hero-title">🤝 Unterstützungsmöglichkeiten</div>
+  <div class="um-hero-sub">Angebote vor und während der Ausbildung – für Jugendliche und Berater*innen in Stuttgart</div>
+  <div class="um-mode-switcher">
+    <button class="um-mode-btn active" onclick="umSetMode('finder')" id="um-btn-finder">🔍 Angebote finden</button>
+    <button class="um-mode-btn" onclick="umSetMode('overview')" id="um-btn-overview">📋 Alle Angebote</button>
+    <button class="um-mode-btn" onclick="umSetMode('berater')" id="um-btn-berater">🧭 Berater-Überblick</button>
+  </div>
+</div>
+
+<!-- MODE 1: FINDER (step-by-step) -->
+<div class="um-finder" id="um-finder">
+  <div class="um-finder-title">Welches Angebot passt?</div>
+  <div class="um-finder-sub">Beantworte 2–3 Fragen – du bekommst direkt passende Angebote angezeigt.</div>
+
+  <div class="um-question-block" id="umQ1">
+    <div class="um-question-label">Frage 1 von 3</div>
+    <div class="um-question-text">Wo stehst du gerade?</div>
+    <div class="um-choices">
+      <button class="um-choice-btn" onclick="umAnswer('phase','vor')">📚 Ich suche noch einen Ausbildungsplatz / bin in der Vorbereitung</button>
+      <button class="um-choice-btn" onclick="umAnswer('phase','wäh')">🔧 Ich bin schon in einer Ausbildung (oder kurz davor)</button>
+      <button class="um-choice-btn" onclick="umAnswer('phase','spra')">🌍 Ich lerne noch Deutsch oder brauche einen Schulabschluss</button>
+      <button class="um-choice-btn" onclick="umAnswer('phase','frei')">🌱 Ich möchte ein Freiwilliges Jahr machen</button>
+      <button class="um-choice-btn" onclick="umAnswer('phase','unter')">🆘 Ich brauche besondere Unterstützung / komme an keine Angebote mehr ran</button>
+    </div>
+  </div>
+
+  <div class="um-question-block" id="umQ2" style="display:none;">
+    <div class="um-question-label">Frage 2 von 3</div>
+    <div class="um-question-text" id="umQ2text">Was trifft auf dich zu?</div>
+    <div class="um-choices" id="umQ2choices"></div>
+  </div>
+
+  <div class="um-question-block" id="umQ3" style="display:none;">
+    <div class="um-question-label">Frage 3 von 3</div>
+    <div class="um-question-text" id="umQ3text">Noch eine Frage:</div>
+    <div class="um-choices" id="umQ3choices"></div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="um-results" id="um-results">
+  <div class="um-results-header">
+    Passende Angebote <span class="um-results-count" id="um-count">0</span>
+  </div>
+  <div class="um-results-sub">Klick auf eine Karte für alle Details.</div>
+  <div class="um-card-grid" id="um-card-grid"></div>
+  <div class="um-no-results" id="um-no-results" style="display:none;">Keine spezifischen Treffer – schau in die <strong>Alle Angebote</strong>-Übersicht.</div>
+  <button class="um-reset-btn" onclick="umReset()">↺ Neue Suche starten</button>
+</div>
+
+<!-- MODE 2: OVERVIEW TABLE -->
+<div class="um-overview" id="um-overview">
+  <input class="um-overview-search" type="text" placeholder="🔎  Angebot, Träger oder Stichwort suchen …" oninput="umSearch(this.value)" id="um-search-input">
+
+  <div class="um-section-heading">Vor der Ausbildung – Berufliche Schulen</div>
+  <table class="um-table" id="umT1">
+    <thead><tr><th>Angebot</th><th>Ziel & Inhalt</th><th>Alter</th><th>Zugang</th><th>Dauer</th><th>Voraussetzung</th></tr></thead>
+    <tbody>
+      <tr data-search="vab-o deutsch sprache meldestelle"><td class="um-tr-name">VAB-O</td><td>Deutschkenntnisse + Berufsorientierung für neu Zugezogene</td><td>i.d.R. U18</td><td>Meldestelle / private Schulen</td><td>1–2 J.</td><td>Ohne HSA; noch nicht lange in D</td></tr>
+      <tr data-search="avdual ausbildungsvorbereitung dual schulabschluss meldestelle"><td class="um-tr-name">AVdual</td><td>Schulabschluss nachholen + Ausbildungsvorbereitung (ersetzt VAB, AV, BEJ)</td><td>i.d.R. U18</td><td>Meldestelle / direkt bei Schulen</td><td>1–2 J.</td><td>Kein/niedriger Schulabschluss</td></tr>
+      <tr data-search="jungarbeiter berufsschulpflicht meldestelle u18"><td class="um-tr-name">Jungarbeiter:innenklasse</td><td>Erfüllung der Berufsschulpflicht (1–2×/Woche)</td><td>U18</td><td>Meldestelle</td><td>–</td><td>Ohne Schul-/Ausbildungsplatz</td></tr>
+      <tr data-search="bfk friseur körperpflege hoppenlau berufsfachklasse"><td class="um-tr-name">BFK Körperpflege</td><td>Vollzeit-Vorbereitung auf Friseur-Ausbildung (+ HSA möglich)</td><td>i.d.R. U18</td><td>GS Im Hoppenlau</td><td>1 J.</td><td>Ziel: Friseur-Ausbildung</td></tr>
+    </tbody>
+  </table>
+
+  <div class="um-section-heading">Vor der Ausbildung – Sonstige Angebote</div>
+  <table class="um-table" id="umT2">
+    <thead><tr><th>Angebot</th><th>Ziel & Inhalt</th><th>Alter</th><th>Zugang</th><th>Dauer</th><th>Voraussetzung</th></tr></thead>
+    <tbody>
+      <tr data-search="bvb berufsvorbereitende bildungsmaßnahme kolping berufsorientierung hsa"><td class="um-tr-name">BvB (Kolping)</td><td>Berufsorientierung + Ausbildungsreife, HSA möglich (Nachholen)</td><td>–</td><td>Berufsberatung (SGB III)</td><td>ca. 10 Mon.</td><td>AVdual vorrangig</td></tr>
+      <tr data-search="eq einstiegsqualifizierung langzeitpraktikum betrieb ausbildungsplatz"><td class="um-tr-name">EQ</td><td>Gefördertes Langzeitpraktikum im Betrieb, Ziel: Übernahme in Ausbildung</td><td>i.d.R. U25</td><td>Berufsberatung / Eigenbewerbung</td><td>4–12 Mon.</td><td>Ausbildungsreife, ohne Ausbildungsplatz</td></tr>
+      <tr data-search="chance plus deutsche bahn db langzeitpraktikum ausbildung"><td class="um-tr-name">Chance plus (Deutsche Bahn)</td><td>EQ bei der DB – praktische + schulische Phasen; 450 €/Monat + Jobticket</td><td>–</td><td>Bewerbung direkt bei DB</td><td>6–12 Mon.</td><td>Ausbildungsreife + Schulabschluss</td></tr>
+      <tr data-search="porsche förderjahr ausbildung technisch sozial langzeitpraktikum"><td class="um-tr-name">Förderjahr Porsche AG</td><td>EQ bei Porsche – technische Berufe, schwierige soziale Umstände; 512 €/Mon.</td><td>–</td><td>Ausbildungscampus Porsche</td><td>ab 1.11.</td><td>Schulabschluss &gt;1 J. zurück, besondere Förderfähigkeit</td></tr>
+      <tr data-search="reif für die ausbildung caritas ausbildungsreife jobcenter vorschaltmaßnahme baeplus"><td class="um-tr-name">Reif für die Ausbildung (Caritas)</td><td>Vorschaltmaßnahme → Ausbildungsreife, dann 1. Arbeitsmarkt oder BaEplus</td><td>–</td><td>Jobcenter</td><td>bis Aubi-Start</td><td>ALG2-Bezug</td></tr>
+      <tr data-search="joblinge qualifizierung ausbildung kooperationsbetrieb mentor jobcenter"><td class="um-tr-name">Joblinge</td><td>6-monatiges Vollzeitprogramm: Workshops, Praxisphasen, Mentor; auch Kompass für Geflüchtete</td><td>–</td><td>Jobcenter / direkt anfragen</td><td>6 Mon.</td><td>ALG2-Bezug</td></tr>
+    </tbody>
+  </table>
+
+  <div class="um-section-heading">Sprache &amp; Schulabschluss</div>
+  <table class="um-table" id="umT3">
+    <thead><tr><th>Angebot</th><th>Ziel & Inhalt</th><th>Alter</th><th>Zugang</th><th>Dauer</th><th>Voraussetzung</th></tr></thead>
+    <tbody>
+      <tr data-search="400 zukunft caritas jobconnections hsa schulfremdenprüfung vhs arbeit"><td class="um-tr-name">400+Zukunft</td><td>Arbeitsprogramm + HSA nachholen (VHS); 538 €/Mon. + VVS-Ticket</td><td>16–27 J.</td><td>JobConnections / Träger direkt</td><td>bis 18 Mon.</td><td>Kein Job/Ausbildung; bei ALG2: Zust. pAp</td></tr>
+      <tr data-search="step by step analog 400 zukunft hze sgb viii caritas"><td class="um-tr-name">Step by step</td><td>Wie 400+Zukunft – für JM mit Hilfe zur Erziehung (SGB VIII)</td><td>16–27 J.</td><td>JobConnections / Träger direkt</td><td>bis 18 Mon.</td><td>HzE/Lebensunterhalt SGB VIII</td></tr>
+      <tr data-search="youssef männlich schule hsa förderplan caritas bonhoeffer sonderpädagogisch"><td class="um-tr-name">Youssef</td><td>Beschulung männl. Jugendliche in Regelschule gefährdet; HSA-Ziel, 1 Praktikumstag/Woche</td><td>15–18 J. (männl.)</td><td>bisherige Schule / Staatliches Schulamt</td><td>ca. 1 J.</td><td>ESENT-Bildungsanspruch</td></tr>
+      <tr data-search="haus der lebenschance hdl eva schulfremdenprüfung hsa jobcoach"><td class="um-tr-name">Haus der Lebenschance (eva)</td><td>HSA in geschütztem Rahmen; max. 15 TN; Jobcoach; 4 Wo. Probezeit</td><td>17–25 J.</td><td>Gespräch beim HdL (ab Januar)</td><td>bis Sommerferien</td><td>–</td></tr>
+      <tr data-search="schulfremdenprüfung schulabschluss staatliches schulamt vhs jahreskurs"><td class="um-tr-name">Schulfremdenprüfung</td><td>Schulabschluss nachholen – Prüfung an staatlicher Schule; Vorbereitung z.B. VHS</td><td>–</td><td>Staatliches Schulamt</td><td>Anmeldung vor 01.03.</td><td>Gemeldet in BW; Abschluss nicht 2× gescheitert</td></tr>
+      <tr data-search="lisa henke awo sprachkurs hsa einwanderer schulfremdenprüfung a2"><td class="um-tr-name">LISA (Henke, AWO)</td><td>Sprachkurs + HSA für junge Einwanderer; Vorkurs Mai, Hauptkurs September</td><td>U27</td><td>Anmeldung bis März</td><td>Schuljahr</td><td>In Stuttgart gemeldet; mind. A2</td></tr>
+      <tr data-search="integrationskurs deutsch bamf jobcenter b1 orientierungskurs"><td class="um-tr-name">Integrationskurse</td><td>Deutsch bis B1 + Orientierungskurs; auch Alphabetisierung</td><td>–</td><td>BAMF-Berechtigungsschein / Jobcenter</td><td>–</td><td>Gute Bleibeperspektive</td></tr>
+      <tr data-search="städtische deutschkurse unsichere bleibeperspektive clearingstelle"><td class="um-tr-name">Städt. Deutschkurse</td><td>Deutschkurse für Menschen mit unsicherer Bleibeperspektive</td><td>–</td><td>Clearingstelle</td><td>–</td><td>Unsichere Bleibeperspektive</td></tr>
+    </tbody>
+  </table>
+
+  <div class="um-section-heading">Freiwilligendienste</div>
+  <table class="um-table" id="umT4">
+    <thead><tr><th>Angebot</th><th>Ziel & Inhalt</th><th>Alter</th><th>Zugang</th><th>Dauer</th><th>Voraussetzung</th></tr></thead>
+    <tbody>
+      <tr data-search="fsj fösj freiwilliges jahr diakonie awo caritas eva wohlfahrtswerk ib jugendagentur"><td class="um-tr-name">Freiwilliges Jahr (FSJ/FÖJ)</td><td>Soziales Praktikum + Seminartage; Varianten: Geflüchtete, Fokus, Inklusion; FHR möglich</td><td>U27</td><td>Bewerbung bei den Trägern</td><td>1 J. (min. 6, max. 18 Mon.)</td><td>Manche Stellen Ü18</td></tr>
+      <tr data-search="bfd bundesfreiwilligendienst freiwillig ohne altersgrenze jugendagentur"><td class="um-tr-name">BFD (Bundesfreiwilligendienst)</td><td>Freiwilligendienst ohne Altersbeschränkung; FHR möglich</td><td>Ohne Grenze</td><td>Bewerbung bei den Trägern</td><td>–</td><td>Schulpflicht erfüllt</td></tr>
+      <tr data-search="aupair gastfamilie kinder haushalt sprachkurs rausvonzuhaus"><td class="um-tr-name">Au-Pair</td><td>Leben in Gastfamilie; Kinderbetreuung; teilweise Sprachkurse</td><td>Ü18</td><td>Vermittlungsagenturen</td><td>6–12 Mon.</td><td>–</td></tr>
+      <tr data-search="ehrenamt freiwilligenbörse stuttgart service"><td class="um-tr-name">Ehrenamt</td><td>Freiwilligenbörse der Stadt Stuttgart</td><td>–</td><td><a href="https://service.stuttgart.de/lhs-services/fwb/" target="_blank" rel="noopener" style="color:#1a237e;">service.stuttgart.de</a></td><td>–</td><td>–</td></tr>
+    </tbody>
+  </table>
+
+  <div class="um-section-heading">Während der Ausbildung</div>
+  <table class="um-table" id="umT5">
+    <thead><tr><th>Angebot</th><th>Ziel & Inhalt</th><th>Alter</th><th>Zugang</th><th>Dauer</th><th>Voraussetzung</th></tr></thead>
+    <tbody>
+      <tr data-search="faire chancen daa ausbildung 1bfs lernförderung sozialpädagogisch stabilisierung"><td class="um-tr-name">Faire Chancen in der Ausbildung (DAA)</td><td>Lernförderung + sozialpäd. Unterstützung für Azubis in 1BFS</td><td>–</td><td>Über Träger</td><td>jederzeit</td><td>Azubi in 1BFS</td></tr>
+      <tr data-search="asa assistierte ausbildung daa ib nachhilfe sprache sozialpädagogisch"><td class="um-tr-name">AsA (Assistierte Ausbildung)</td><td>Nachhilfe + Sprachunterstützung + sozialpäd. Begleitung in betrieblicher Ausbildung</td><td>–</td><td>Berufsberatung</td><td>–</td><td>Ausbildungsvertrag + schlechte Noten/Probleme</td></tr>
+      <tr data-search="cambio eva ausbildungssuche abbruch nachhilfe lernwerkstatt 18 27"><td class="um-tr-name">Cambio (eva)</td><td>Unterstützung bei Ausbildungssuche + Abbruchprävention; Nachhilfe Lernwerkstatt</td><td>18–27 J.</td><td>Über Träger</td><td>jederzeit</td><td>Kein ALG2; Keine Erstausbildung</td></tr>
+      <tr data-search="bae berufsausbildung außerbetrieblich daa ib jobcenter kein betrieb"><td class="um-tr-name">BaE (DAA, IB)</td><td>Ausbildung im Bildungsträger + Betrieb; auch Teilzeit möglich</td><td>–</td><td>Berufsberatung</td><td>–</td><td>Keine Erstausbildung; ohne Vorvertrag</td></tr>
+      <tr data-search="baeplus caritas eva jobcenter alg2 ausbildung außerbetrieblich"><td class="um-tr-name">BaEplus (Caritas + eva)</td><td>Wie BaE – für ALG2-Beziehende</td><td>–</td><td>Jobcenter</td><td>–</td><td>ALG2-Bezug + Ausbildungsreife</td></tr>
+      <tr data-search="ausbildungschance caritas eva jobconnections geförderte ausbildung kein alg2"><td class="um-tr-name">Ausbildungschance (Caritas + eva)</td><td>Geförderte Ausbildung – weder Jobcenter noch Berufsberatung zuständig</td><td>–</td><td>JobConnections</td><td>–</td><td>Kein ALG2; Ausbildungsreife</td></tr>
+      <tr data-search="aita zora alleinerziehend teilzeit ausbildung jobcenter kinderbetreuung"><td class="um-tr-name">Aita 2024 (ZORA)</td><td>Teilzeitausbildung für Alleinerziehende; Kinderbetreuungsorganisation; 6 Mon. Übergangsbegleitung</td><td>–</td><td>Jobcenter</td><td>jederzeit</td><td>ALG2-Bezug</td></tr>
+      <tr data-search="aqtadigi neue arbeit teilzeit ausbildung alleinerziehend pflege behinderung"><td class="um-tr-name">AQTAdigi+ (Neue Arbeit)</td><td>Ausbildung + Qualifizierung in Teilzeit – Alleinerziehende, Menschen mit Pflegeaufgaben</td><td>Ü25</td><td>jederzeit</td><td>jederzeit</td><td>ALG I oder ALG II</td></tr>
+      <tr data-search="teilqualifikation verkäuferin zora ihk bildungsgutschein nachqualifizierung"><td class="um-tr-name">Teilqualifikation Verkäuferin (ZORA)</td><td>2-jährige Vorbereitung IHK-Prüfung Verkäuferin; sozialpäd. Begleitung</td><td>Frauen</td><td>Agentur f. Arbeit (Bildungsgutschein)</td><td>2 J.</td><td>Eignung für Berufsfeld</td></tr>
+      <tr data-search="verAplus abbruch stärkung ausbildungsbegleiter senior experten ses"><td class="um-tr-name">VerAplus</td><td>Senior-Expert*innen als Vertrauenspersonen bei drohendem Ausbildungsabbruch</td><td>–</td><td>Regionalkoordinator / SES</td><td>12 Mon.</td><td>In Ausbildung</td></tr>
+      <tr data-search="umschulung berufsabschluss wechsel arbeitsagentur jobcenter kammern kursnet"><td class="um-tr-name">Umschulung</td><td>Nachholen Berufsabschluss / Berufswechsel; Betrieb oder Träger</td><td>–</td><td>Arbeitsagentur / Jobcenter / Kammern</td><td>ca. 2/3 Ausbildungszeit</td><td>–</td></tr>
+    </tbody>
+  </table>
+
+  <div class="um-section-heading">Unterstützung &amp; Aktivierung</div>
+  <table class="um-table" id="umT6">
+    <thead><tr><th>Angebot</th><th>Ziel & Inhalt</th><th>Alter</th><th>Zugang</th><th>Dauer</th><th>Voraussetzung</th></tr></thead>
+    <tbody>
+      <tr data-search="yes you can eva aktivierung jobcenter maßnahmefähigkeit gruppen u27 alg2"><td class="um-tr-name">Yes You Can! (eva)</td><td>Aktivierungshilfe + Heranführung an Maßnahmefähigkeit; aufsuchend, Gruppen</td><td>U27</td><td>Jobcenter</td><td>–</td><td>ALG2-Bezug</td></tr>
+      <tr data-search="silkyplus sbr jugendarmut individuelle problemlage u25 polizei gericht finanzen"><td class="um-tr-name">SILKYplus (sbr)</td><td>Unterstützung in individuellen Problemlagen: Schule, Beruf, Familie, Finanzen, Polizei</td><td>U25</td><td>–</td><td>–</td><td>–</td></tr>
+      <tr data-search="rubikon rudolf sophien stift psychische erkrankung beratung trainingsarbeitsplatz"><td class="um-tr-name">Rubikon Kontaktstelle</td><td>Beratung + Trainingsarbeitsplätze für Menschen mit psychischer Erkrankung</td><td>–</td><td>direkt beim Träger</td><td>–</td><td>Diagnose nicht zwingend nötig</td></tr>
+      <tr data-search="nifaplus geflüchtete berufliche teilhabe agdw eva werkstatt parität ausländerrecht"><td class="um-tr-name">NIFAplus (Geflüchtete)</td><td>Berufsorientierung, Vermittlung, Rechtsberatung für Geflüchtete</td><td>–</td><td>AGDW / eva / Werkstatt PARITÄT</td><td>–</td><td>Aufenthaltserlaubnis/-gestattung, kein absolutes Arbeitsverbot</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MODE 3: BERATER OVERVIEW -->
+<div class="um-berater" id="um-berater">
+  <div class="um-berater-intro">
+    Diese Übersicht hilft beim strukturierten Überblick. Die Angebote sind nach <strong>Situation des/der Jugendlichen</strong> gegliedert – so findet ihr im Beratungsgespräch schnell den richtigen nächsten Schritt.<br><br>
+    <strong>Wichtig:</strong> Angebote und Träger unterliegen häufigen Änderungen. Stand: März 2025.
+  </div>
+
+  <div class="um-flow-title">🔵 Kein/niedriger Schulabschluss – Schulpflicht noch offen</div>
+  <div class="um-flow-grid">
+    <div class="um-flow-card blue">
+      <div class="um-flow-card-title">Neu in Deutschland (Sprache fehlt)</div>
+      <div class="um-flow-item">VAB-O → Meldestelle / private Schule</div>
+      <div class="um-flow-item">LISA (Einwanderer, U27, A2)</div>
+      <div class="um-flow-item">Integrationskurs (BAMF)</div>
+    </div>
+    <div class="um-flow-card blue">
+      <div class="um-flow-card-title">Kein Abschluss, schulpflichtig</div>
+      <div class="um-flow-item">AVdual → Meldestelle (bis 30.4.)</div>
+      <div class="um-flow-item">Jungarbeiter:innenklasse (U18, ohne Platz)</div>
+      <div class="um-flow-item">Youssef (männl., 15–18 J., ESENT)</div>
+    </div>
+    <div class="um-flow-card blue">
+      <div class="um-flow-card-title">Abschluss nachholen (Schulpflicht erfüllt)</div>
+      <div class="um-flow-item">400+Zukunft (16–27 J., 538€/Mon.)</div>
+      <div class="um-flow-item">Haus der Lebenschance (17–25 J.)</div>
+      <div class="um-flow-item">Schulfremdenprüfung (VHS-Vorbereitung)</div>
+    </div>
+  </div>
+
+  <div class="um-flow-title">🟢 Ausbildungsreife vorhanden – Ausbildungsplatz fehlt</div>
+  <div class="um-flow-grid">
+    <div class="um-flow-card green">
+      <div class="um-flow-card-title">Über Berufsberatung / Agentur</div>
+      <div class="um-flow-item">EQ (4–12 Mon., Langzeitpraktikum)</div>
+      <div class="um-flow-item">BvB Kolping (ca. 10 Mon., HSA möglich)</div>
+      <div class="um-flow-item">BaE – DAA, IB (ohne Vorvertrag)</div>
+    </div>
+    <div class="um-flow-card green">
+      <div class="um-flow-card-title">Über Jobcenter (ALG2)</div>
+      <div class="um-flow-item">Reif für die Ausbildung / Caritas (Vorschalt)</div>
+      <div class="um-flow-item">Joblinge (6 Mon. Vollzeit)</div>
+      <div class="um-flow-item">BaEplus – Caritas + eva</div>
+    </div>
+    <div class="um-flow-card green">
+      <div class="um-flow-card-title">Über JobConnections / Direkt</div>
+      <div class="um-flow-item">Ausbildungschance (kein ALG2, kein JC)</div>
+      <div class="um-flow-item">Chance plus Deutsche Bahn</div>
+      <div class="um-flow-item">Förderjahr Porsche AG (ab 1.11.)</div>
+    </div>
+  </div>
+
+  <div class="um-flow-title">🔴 In Ausbildung – Probleme / Abbruchgefahr</div>
+  <div class="um-flow-grid">
+    <div class="um-flow-card red">
+      <div class="um-flow-card-title">Lern- und Sprachprobleme</div>
+      <div class="um-flow-item">AsA (DAA, IB) → Berufsberatung</div>
+      <div class="um-flow-item">Faire Chancen (DAA) → für 1BFS-Azubis</div>
+    </div>
+    <div class="um-flow-card red">
+      <div class="um-flow-card-title">Drohender Abbruch / Suche</div>
+      <div class="um-flow-item">Cambio (eva, 18–27 J., kein ALG2)</div>
+      <div class="um-flow-item">VerAplus (Senior-Expert*innen)</div>
+    </div>
+    <div class="um-flow-card red">
+      <div class="um-flow-card-title">Besondere Lebenslagen</div>
+      <div class="um-flow-item">Aita 2024 / AQTAdigi+ (Alleinerziehende)</div>
+      <div class="um-flow-item">Teilqualifikation Verkäuferin (ZORA)</div>
+      <div class="um-flow-item">Umschulung (Kammern, Jobcenter)</div>
+    </div>
+  </div>
+
+  <div class="um-flow-title">🟣 Besondere Unterstützungssituationen</div>
+  <div class="um-flow-grid">
+    <div class="um-flow-card purple">
+      <div class="um-flow-card-title">Schwer erreichbar / ALG2</div>
+      <div class="um-flow-item">Yes You Can! (eva, U27)</div>
+      <div class="um-flow-item">SILKYplus (sbr, U25)</div>
+    </div>
+    <div class="um-flow-card purple">
+      <div class="um-flow-card-title">Psychische Erkrankung</div>
+      <div class="um-flow-item">Rubikon Kontaktstelle (RSS)</div>
+    </div>
+    <div class="um-flow-card purple">
+      <div class="um-flow-card-title">Geflüchtete</div>
+      <div class="um-flow-item">NIFAplus (AGDW / eva / Werkstatt PARITÄT)</div>
+      <div class="um-flow-item">Joblinge Kompass (Sprachförderung)</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ====== UNTERSTUETZUNG MODULE ======
+const umData = [
+  // VOR DER AUSBILDUNG
+  {id:'vab-o', name:'VAB-O', phase:'spra', ziel:'Deutschkenntnisse erwerben + Berufsorientierung für Jugendliche, die noch nicht lange in Deutschland sind. Häufiger Übergang ins VAB/AVdual für den HSA.',tags:['Ohne HSA','i.d.R. U18','Meldestelle'], alter:'i.d.R. U18', zugang:'Meldestelle / private Schulen', dauer:'1–2 Jahre', voraus:'Ohne HSA; Neu in Deutschland', traeger:'Berufliche Schulen', geld:'–', sub:'vor'},
+  {id:'avdual', name:'AVdual', phase:'vor', ziel:'Schulabschluss nachholen und für eine Ausbildung qualifizieren. Ersetzt VAB, AV und BEJ. Verbesserung des HSA möglich.',tags:['Kein/niedriger Abschluss','U18','Meldestelle'], alter:'i.d.R. U18', zugang:'Meldestelle (Frist 30.4.) / direkt bei Schulen (Frist 1.3.)', dauer:'1–2 Jahre', voraus:'Kein oder niedriger Schulabschluss', traeger:'Berufliche Schulen', geld:'–', sub:'vor'},
+  {id:'bvb', name:'BvB (Kolping)', phase:'vor', ziel:'Berufsorientierung in verschiedenen Feldern + Ausbildungsreife erreichen. HSA nachholen möglich.',tags:['ohne Berufsorientierung','U25','SGB III'], alter:'–', zugang:'Berufsberatung (SGB III)', dauer:'ca. 10 Monate', voraus:'AVdual vorrangig', traeger:'Kolping', geld:'BaB ca. 309 €/Mon.', sub:'vor'},
+  {id:'eq', name:'EQ (Einstiegsqualifizierung)', phase:'vor', ziel:'Gefördertes Langzeitpraktikum im Betrieb. Ziel: Übernahme in Ausbildung. Verkürzung der Ausbildungszeit möglich.',tags:['Ausbildungsreife','U25','Bewerbung'], alter:'i.d.R. U25', zugang:'Eigenbewerbung / Berufsberatung', dauer:'4–12 Monate (bis Anfang Mai)', voraus:'Ausbildungsreife, kein Ausbildungsplatz', traeger:'Betrieb + AfA', geld:'BaB ca. 280 €/Mon.', sub:'vor'},
+  {id:'db', name:'Chance plus (Deutsche Bahn)', phase:'vor', ziel:'"EQ bei der DB" – intensive Vorbereitung auf DB-Ausbildung durch Praxis und Schule.',tags:['Ausbildungsreife','Bewerbung bei DB'], alter:'–', zugang:'Direkt bei der Deutschen Bahn bewerben', dauer:'6–12 Monate', voraus:'Schulabschluss, ausbildungssuchend gemeldet', traeger:'Deutsche Bahn', geld:'ca. 450 €/Mon. + DB Jobticket', sub:'vor'},
+  {id:'porsche', name:'Förderjahr Porsche AG', phase:'vor', ziel:'"EQ bei Porsche" – technische Berufe, besondere soziale Umstände.',tags:['Technische Berufe','Ausbildungscampus'], alter:'–', zugang:'Umfassende Bewerbung beim Ausbildungscampus Porsche', dauer:'Beginn 1.11.', voraus:'Schulabschluss >1 J. zurück, besondere Förderfähigkeit', traeger:'Porsche AG', geld:'512 €/Mon.', sub:'vor'},
+  {id:'reif', name:'Reif für die Ausbildung (Caritas)', phase:'vor', ziel:'Vorschaltmaßnahme für BaEplus – Ausbildungsreife klären und herstellen.',tags:['ALG2','Jobcenter'], alter:'–', zugang:'Jobcenter', dauer:'bis Ausbildungsbeginn', voraus:'ALG2-Bezug', traeger:'Caritas', geld:'–', sub:'vor'},
+  {id:'joblinge', name:'Joblinge', phase:'vor', ziel:'6-monatiges Vollzeitprogramm: Workshops, Praxis, persönlicher Mentor. Joblinge Kompass für Geflüchtete mit Sprachförderung.',tags:['ALG2','Jobcenter','6 Monate'], alter:'–', zugang:'Jobcenter / ggf. direkt anfragen', dauer:'6 Monate', voraus:'ALG2-Bezug', traeger:'JOBLINGE e.V.', geld:'–', sub:'vor'},
+  // SPRACHE & ABSCHLUSS
+  {id:'400', name:'400+Zukunft', phase:'spra', ziel:'Jugendarbeitsprogramm – Arbeitswelt kennenlernen + HSA nachholen (VHS). 14-tägiger Wechsel Schule/Arbeit.',tags:['16–27 J.','538 €/Mon.','VVS'], alter:'16–27 J.', zugang:'JobConnections / Träger direkt', dauer:'Einstieg jederzeit, bis 18 Monate', voraus:'Kein Job/Ausbildung; bei ALG2: Zustimmung pAp', traeger:'Caritas JAP, sbr, GJB, Neue Arbeit', geld:'538 €/Mon. + VVS', sub:'spra'},
+  {id:'sbs', name:'Step by step', phase:'spra', ziel:'Wie 400+Zukunft – speziell für Jugendliche mit Hilfe zur Erziehung (SGB VIII).',tags:['16–27 J.','HzE/SGB VIII'], alter:'16–27 J.', zugang:'JobConnections / Träger direkt', dauer:'bis 18 Monate', voraus:'HzE oder Lebensunterhalt über SGB VIII', traeger:'Caritas JAP, sbr, GJB, Neue Arbeit', geld:'538 €/Mon. + VVS', sub:'spra'},
+  {id:'youssef', name:'Youssef', phase:'spra', ziel:'Beschulung für männliche Jugendliche, die in der Regelschule scheitern. HSA-Ziel, 1 Praktikumstag/Woche.',tags:['männlich','15–18 J.','ESENT'], alter:'15–18 J. (männlich)', zugang:'Bisherige Schule / Staatliches Schulamt', dauer:'ca. 1 Jahr', voraus:'Festgestellter sonderpäd. Bildungsanspruch (ESENT)', traeger:'Dietrich-Bonhoeffer-Schule + Caritas', geld:'–', sub:'spra'},
+  {id:'hdl', name:'Haus der Lebenschance (eva)', phase:'spra', ziel:'HSA in geschütztem Rahmen. Max. 15 TN. Persönliche Betreuung + Jobcoach. 4 Wochen Probezeit.',tags:['17–25 J.','max. 15 TN'], alter:'17–25 J.', zugang:'Gespräch beim HdL (ab Anfang Januar)', dauer:'Start ca. 4 Wochen vor Sommerferien', voraus:'–', traeger:'eva (Johanniter-Orden + Stadt Stuttgart)', geld:'–', sub:'spra'},
+  {id:'sfp', name:'Schulfremdenprüfung', phase:'spra', ziel:'Schulabschluss nachholen durch staatliche Prüfung. Vorbereitungskurse z.B. bei VHS.',tags:['Staatl. Schulamt','Anmeld. bis 1.3.'], alter:'–', zugang:'Staatliches Schulamt', dauer:'Anmeldung vor 01.03.', voraus:'In BW gemeldet; Abschluss nicht 2× gescheitert', traeger:'Staatliches Schulamt', geld:'–', sub:'spra'},
+  {id:'lisa', name:'LISA (Henke, AWO)', phase:'spra', ziel:'Sprachkurs + HSA-Vorbereitung für junge Einwanderer. Vorkurs ab Mai, Hauptkurs ab September.',tags:['Einwanderer','U27','mind. A2'], alter:'U27', zugang:'Anmeldung i.d.R. bis März', dauer:'Schuljahr', voraus:'In Stuttgart gemeldet, mind. A2', traeger:'Henke Schulung, AWO', geld:'–', sub:'spra'},
+  // FREIWILLIGENDIENSTE
+  {id:'fsj', name:'Freiwilliges Jahr (FSJ/FÖJ)', phase:'frei', ziel:'Soziales Praktikum + Seminartage. Varianten: FSJ Geflüchtete, Fokus, Inklusion. FH-Reife möglich.',tags:['U27','1 Jahr'], alter:'U27 (manche Stellen Ü18)', zugang:'Bewerbung bei Trägern (Diakonie, AWO, Caritas, eva, IB, Wohlfahrtswerk)', dauer:'1 J. (min. 6, max. 18 Mon.)', voraus:'–', traeger:'Jugendagentur Stuttgart', geld:'Taschengeld je nach Träger', sub:'frei'},
+  {id:'bfd', name:'BFD (Bundesfreiwilligendienst)', phase:'frei', ziel:'Freiwilligendienst ohne Altersgrenze. FH-Reife möglich.',tags:['Keine Altersgrenze'], alter:'Ohne Altersgrenze', zugang:'Bewerbung bei Trägern', dauer:'–', voraus:'Schulpflicht erfüllt', traeger:'Jugendagentur Stuttgart', geld:'–', sub:'frei'},
+  // WÄHREND DER AUSBILDUNG
+  {id:'asa', name:'AsA (Assistierte Ausbildung)', phase:'wäh', ziel:'Nachhilfe + Sprachunterstützung + sozialpäd. Begleitung in betrieblicher Ausbildung.',tags:['Azubis','Berufsberatung'], alter:'–', zugang:'Berufsberatung', dauer:'–', voraus:'Ausbildungsvertrag + schlechte Noten/Probleme', traeger:'DAA, IB', geld:'–', sub:'wäh'},
+  {id:'cambio', name:'Cambio (eva)', phase:'wäh', ziel:'Unterstützung bei Ausbildungssuche + Abbruchprävention. Nachhilfe in der Lernwerkstatt.',tags:['18–27 J.','kein ALG2'], alter:'18–27 J.', zugang:'Über Träger (eva)', dauer:'jederzeit', voraus:'Kein ALG2; Keine Erstausbildung', traeger:'eva', geld:'–', sub:'wäh'},
+  {id:'baeplus', name:'BaEplus (Caritas + eva)', phase:'wäh', ziel:'Berufsausbildung in außerbetrieblichen Einrichtungen für ALG2-Beziehende.',tags:['ALG2','Jobcenter'], alter:'–', zugang:'Jobcenter', dauer:'–', voraus:'ALG2-Bezug; Ausbildungsreife', traeger:'Caritas + eva', geld:'–', sub:'wäh'},
+  {id:'ausbildungschance', name:'Ausbildungschance (Caritas + eva)', phase:'wäh', ziel:'Geförderte Ausbildung für JM, die weder Jobcenter noch Berufsberatung erreichen kann.',tags:['kein ALG2','JobConnections'], alter:'–', zugang:'JobConnections', dauer:'–', voraus:'Kein ALG2; Ausbildungsreife', traeger:'Caritas + eva', geld:'–', sub:'wäh'},
+  // UNTERSTÜTZUNG & AKTIVIERUNG
+  {id:'yyc', name:'Yes You Can! (eva)', phase:'unter', ziel:'Aktivierungshilfe für schwer erreichbare Jugendliche. Aufsuchend, Gruppenangebote.',tags:['U27','ALG2'], alter:'U27', zugang:'Jobcenter', dauer:'–', voraus:'ALG2-Bezug', traeger:'eva', geld:'–', sub:'unter'},
+  {id:'silky', name:'SILKYplus (sbr)', phase:'unter', ziel:'Unterstützung in individuellen Problemlagen: Schule, Beruf, Familie, Finanzen, Polizei/Gericht.',tags:['U25'], alter:'U25', zugang:'–', dauer:'–', voraus:'–', traeger:'sbr gGmbH', geld:'–', sub:'unter'},
+  {id:'rubikon', name:'Rubikon Kontaktstelle', phase:'unter', ziel:'Beratung und Erprobung für Menschen mit psychischer Erkrankung. Trainingsarbeitsplätze vor Ort.',tags:['Psych. Erkrankung'], alter:'–', zugang:'Direkt beim Träger', dauer:'–', voraus:'Diagnose nicht zwingend', traeger:'Rudolf-Sophien-Stift', geld:'–', sub:'unter'},
+  {id:'nifa', name:'NIFAplus (Geflüchtete)', phase:'unter', ziel:'Berufsorientierung, Vermittlung, Rechtsberatung (Ausländerrecht) für Geflüchtete.',tags:['Geflüchtete'], alter:'–', zugang:'AGDW / eva / Werkstatt PARITÄT', dauer:'–', voraus:'Aufenthaltserlaubnis, kein absolutes Arbeitsverbot', traeger:'AGDW / eva / Werkstatt PARITÄT', geld:'–', sub:'unter'},
+];
+
+const phaseLabels = {vor:'Vor der Ausbildung', wäh:'Während der Ausbildung', spra:'Sprache & Abschluss', frei:'Freiwilligendienst', unter:'Besondere Unterstützung'};
+const phaseClass = {vor:'phase-vor', wäh:'phase-wäh', spra:'phase-spra', frei:'phase-frei', unter:'phase-unter'};
+
+let umState = {};
+
+function umSetMode(mode) {
+  ['finder','overview','berater'].forEach(m => {
+    document.getElementById('um-'+m).style.display = 'none';
+    document.getElementById('um-btn-'+m).classList.remove('active');
+  });
+  if(mode === 'finder') {
+    document.getElementById('um-finder').style.display = 'block';
+    document.getElementById('um-results').style.display = umState.phase ? 'block' : 'none';
+  } else if(mode === 'overview') {
+    document.getElementById('um-overview').style.display = 'block';
+  } else {
+    document.getElementById('um-berater').style.display = 'block';
+  }
+  document.getElementById('um-btn-'+mode).classList.add('active');
+}
+
+// Q2 options per phase
+const q2config = {
+  vor: {
+    q:'Wie ist dein aktueller Stand bei der Ausbildungssuche?',
+    choices:[
+      {label:'Ich weiß noch nicht, welcher Beruf zu mir passt', val:'orientierung'},
+      {label:'Ich habe mich schon beworben, aber keinen Platz bekommen', val:'keinplatz'},
+      {label:'Ich beziehe ALG2 / bin beim Jobcenter', val:'alg2'},
+    ]
+  },
+  wäh: {
+    q:'Was ist das Problem in deiner Ausbildung?',
+    choices:[
+      {label:'Schlechte Noten / Sprachprobleme in der Berufsschule', val:'noten'},
+      {label:'Ich will die Ausbildung abbrechen oder hab schon abgebrochen', val:'abbruch'},
+      {label:'Ich bin alleinerziehend und brauche Teilzeit', val:'teilzeit'},
+    ]
+  },
+  spra: {
+    q:'Was genau brauchst du?',
+    choices:[
+      {label:'Ich möchte meinen Hauptschulabschluss nachholen', val:'hsa'},
+      {label:'Ich lerne noch Deutsch / bin neu in Deutschland', val:'deutsch'},
+      {label:'Ich brauche Struktur und persönliche Begleitung', val:'begleitung'},
+    ]
+  },
+  frei: {
+    q:'Wie alt bist du?',
+    choices:[
+      {label:'Unter 27 Jahre', val:'u27'},
+      {label:'27 Jahre oder älter', val:'ue27'},
+    ]
+  },
+  unter: {
+    q:'Was beschreibt deine Situation am besten?',
+    choices:[
+      {label:'Ich komme nicht mehr an Angebote ran / werde nicht erreicht', val:'inaktiv'},
+      {label:'Ich habe eine psychische Erkrankung', val:'psych'},
+      {label:'Ich bin geflüchtet und brauche Unterstützung', val:'geflüchtet'},
+    ]
+  },
+};
+
+function umAnswer(key, val) {
+  umState[key] = val;
+  document.querySelectorAll(`#umQ${key==='phase'?1:key==='sub'?2:3} .um-choice-btn`).forEach(b => b.classList.remove('selected'));
+  event.target.classList.add('selected');
+
+  if(key === 'phase') {
+    const cfg = q2config[val];
+    document.getElementById('umQ2text').textContent = cfg.q;
+    const choices = document.getElementById('umQ2choices');
+    choices.innerHTML = cfg.choices.map(c => `<button class="um-choice-btn" onclick="umAnswer('sub','${c.val}')">${c.label}</button>`).join('');
+    document.getElementById('umQ2').style.display = 'block';
+    document.getElementById('umQ3').style.display = 'none';
+    document.getElementById('um-results').style.display = 'none';
+    umState = {phase: val};
+  } else if(key === 'sub') {
+    umState.sub = val;
+    umShowResults();
+  }
+}
+
+function umShowResults() {
+  const phase = umState.phase;
+  const sub = umState.sub;
+  let filtered = umData.filter(d => d.phase === phase);
+
+  // Further filter by sub-answer
+  if(phase === 'vor') {
+    if(sub === 'orientierung') filtered = filtered.filter(d => ['bvb','avdual','joblinge'].includes(d.id));
+    else if(sub === 'keinplatz') filtered = filtered.filter(d => ['eq','db','porsche','ausbildungschance'].includes(d.id));
+    else if(sub === 'alg2') filtered = filtered.filter(d => ['reif','joblinge','baeplus'].includes(d.id));
+  } else if(phase === 'wäh') {
+    if(sub === 'noten') filtered = filtered.filter(d => ['asa','cambio'].includes(d.id));
+    else if(sub === 'abbruch') filtered = filtered.filter(d => ['cambio','baeplus','ausbildungschance'].includes(d.id));
+    else if(sub === 'teilzeit') filtered = []; // show Aita, AQTAdigi not in dataset above for wäh
+  } else if(phase === 'spra') {
+    if(sub === 'hsa') filtered = filtered.filter(d => ['400','sbs','hdl','sfp','lisa'].includes(d.id));
+    else if(sub === 'deutsch') filtered = filtered.filter(d => ['vab-o','lisa'].includes(d.id));
+    else if(sub === 'begleitung') filtered = filtered.filter(d => ['hdl','youssef','400'].includes(d.id));
+  } else if(phase === 'frei') {
+    if(sub === 'u27') filtered = filtered.filter(d => d.id === 'fsj');
+    else filtered = filtered.filter(d => d.id === 'bfd');
+  } else if(phase === 'unter') {
+    if(sub === 'inaktiv') filtered = filtered.filter(d => ['yyc','silky'].includes(d.id));
+    else if(sub === 'psych') filtered = filtered.filter(d => d.id === 'rubikon');
+    else if(sub === 'geflüchtet') filtered = filtered.filter(d => d.id === 'nifa');
+  }
+
+  // Add teilzeit special case
+  if(phase === 'wäh' && sub === 'teilzeit') {
+    filtered = [{id:'aita', name:'Aita 2024 (ZORA)', phase:'wäh', ziel:'Teilzeitausbildung für Alleinerziehende – Kinderbetreuung, Ausbildungsplatzsuche, Übergang.',tags:['Alleinerziehend','Jobcenter','ALG2'], alter:'–', zugang:'Jobcenter', dauer:'jederzeit', voraus:'ALG2-Bezug', traeger:'ZORA', geld:'–'},
+    {id:'aqta', name:'AQTAdigi+ (Neue Arbeit)', phase:'wäh', ziel:'Ausbildung + Qualifizierung in Teilzeit für Alleinerziehende und Menschen mit Pflegeaufgaben.',tags:['Alleinerziehend','Pflege','Ü25'], alter:'Ü25', zugang:'jederzeit', dauer:'jederzeit', voraus:'ALG I oder ALG II', traeger:'Neue Arbeit', geld:'–'}];
+  }
+
+  const grid = document.getElementById('um-card-grid');
+  const noRes = document.getElementById('um-no-results');
+  document.getElementById('um-count').textContent = filtered.length;
+
+  if(filtered.length === 0) {
+    grid.innerHTML = '';
+    noRes.style.display = 'block';
+  } else {
+    noRes.style.display = 'none';
+    grid.innerHTML = filtered.map(d => `
+      <div class="um-card" id="umcard-${d.id}" onclick="umToggleCard('${d.id}')">
+        <div class="um-card-phase ${phaseClass[d.phase] || 'phase-vor'}">${phaseLabels[d.phase] || ''}</div>
+        <div class="um-card-name">${d.name}</div>
+        <div class="um-card-ziel">${d.ziel}</div>
+        <div class="um-card-tags">
+          ${(d.tags||[]).map(t => `<span class="um-tag">${t}</span>`).join('')}
+          ${d.geld && d.geld !== '–' ? `<span class="um-tag geld">💶 ${d.geld}</span>` : ''}
+        </div>
+        <div class="um-card-expand-hint">▸ Tippen für Details</div>
+        <div class="um-card-detail">
+          <div class="um-detail-row"><span class="um-detail-label">Alter</span><span class="um-detail-value">${d.alter||'–'}</span></div>
+          <div class="um-detail-row"><span class="um-detail-label">Zugang</span><span class="um-detail-value">${d.zugang||'–'}</span></div>
+          <div class="um-detail-row"><span class="um-detail-label">Dauer</span><span class="um-detail-value">${d.dauer||'–'}</span></div>
+          <div class="um-detail-row"><span class="um-detail-label">Voraussetzung</span><span class="um-detail-value">${d.voraus||'–'}</span></div>
+          ${d.traeger ? `<div class="um-detail-row"><span class="um-detail-label">Träger</span><span class="um-detail-value">${d.traeger}</span></div>` : ''}
+          ${d.geld && d.geld !== '–' ? `<div class="um-detail-row"><span class="um-detail-label">Vergütung</span><span class="um-detail-value">${d.geld}</span></div>` : ''}
+        </div>
+      </div>`).join('');
+  }
+
+  document.getElementById('um-results').style.display = 'block';
+  document.getElementById('um-results').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function umToggleCard(id) {
+  const card = document.getElementById('umcard-'+id);
+  const wasExpanded = card.classList.contains('expanded');
+  document.querySelectorAll('.um-card').forEach(c => c.classList.remove('expanded'));
+  if(!wasExpanded) card.classList.add('expanded');
+}
+
+function umReset() {
+  umState = {};
+  document.querySelectorAll('.um-choice-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById('umQ2').style.display = 'none';
+  document.getElementById('umQ3').style.display = 'none';
+  document.getElementById('um-results').style.display = 'none';
+  document.getElementById('um-finder').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function umSearch(val) {
+  const q = val.toLowerCase().trim();
+  document.querySelectorAll('.um-table tbody tr').forEach(row => {
+    const text = (row.dataset.search || '') + row.textContent.toLowerCase();
+    row.classList.toggle('hidden-row', q.length > 1 && !text.includes(q));
+  });
+}
+
+// Init
+document.getElementById('um-finder').style.display = 'block';
+document.getElementById('um-overview').style.display = 'none';
+document.getElementById('um-berater').style.display = 'none';
+</script>
+
+</div><!-- end unterstuetzung-tab -->
+
