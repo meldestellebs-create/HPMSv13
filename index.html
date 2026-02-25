@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bildungswege Baden-Württemberg - Interaktives Tool – step5h</title>
+<title>Bildungswege Baden-Württemberg - Interaktives Tool – support_tab/title>
 <style>
 * { 
   margin: 0; 
@@ -5838,10 +5838,19 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="nis-card-links">
           <a href="https://house-of-resources-stuttgart.de/stadtteilkarte-kontakt-zu-vereinen/" target="_blank" rel="noopener" class="nis-link nis-link-ext">🗺�
 
+</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+<!-- END neu-in-stuttgart-tab -->
+
 <!-- ===================== UNTERSTÜTZUNG TAB ===================== -->
 <div id="unterstuetzung-tab" class="tab-content">
 <style>
-  /* ---- Unterstützung Tab Styles ---- */
   .ust-hero {
     background: linear-gradient(135deg, #1a5276 0%, #2471a3 60%, #1abc9c 100%);
     border-radius: 18px;
@@ -5851,259 +5860,84 @@ document.addEventListener('DOMContentLoaded', function() {
     position: relative;
     overflow: hidden;
   }
-  .ust-hero::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-  }
-  .ust-hero h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin: 0 0 8px;
-    letter-spacing: -0.5px;
-  }
-  .ust-hero p {
-    font-size: 1.05rem;
-    opacity: 0.92;
-    margin: 0;
-    max-width: 600px;
-  }
-  /* Phase switcher */
-  .ust-phase-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 28px;
-    flex-wrap: wrap;
-  }
+  .ust-hero h1 { font-size: 2rem; font-weight: 800; margin: 0 0 8px; }
+  .ust-hero p { font-size: 1.05rem; opacity: 0.92; margin: 0; max-width: 600px; }
+
+  .ust-phase-tabs { display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap; }
   .ust-phase-btn {
-    background: #eaf3fb;
-    border: 2px solid transparent;
-    border-radius: 50px;
-    padding: 10px 22px;
-    font-size: 0.95rem;
-    font-weight: 700;
-    cursor: pointer;
-    color: #1a5276;
-    transition: all 0.18s;
-    display: flex;
-    align-items: center;
-    gap: 7px;
+    background: #eaf3fb; border: 2px solid transparent; border-radius: 50px;
+    padding: 10px 22px; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+    color: #1a5276; transition: all 0.18s; display: flex; align-items: center; gap: 7px;
   }
-  .ust-phase-btn:hover {
-    background: #d1e8f5;
-  }
-  .ust-phase-btn.active {
-    background: #1a5276;
-    color: #fff;
-    border-color: #1a5276;
-  }
-  /* Phase panels */
+  .ust-phase-btn:hover { background: #d1e8f5; }
+  .ust-phase-btn.active { background: #1a5276; color: #fff; border-color: #1a5276; }
+
   .ust-phase-panel { display: none; }
-  .ust-phase-panel.active { display: block; }
-  /* Filter bar */
-  .ust-filter-bar {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 22px;
-    align-items: center;
-  }
-  .ust-filter-label {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #7f8c8d;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-right: 4px;
-  }
+  .ust-phase-panel.ust-active { display: block; }
+
+  .ust-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; align-items: center; }
+  .ust-filter-label { font-size: 0.82rem; font-weight: 700; color: #7f8c8d; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px; }
   .ust-filter-chip {
-    background: #f0f3f4;
-    border: 2px solid transparent;
-    border-radius: 50px;
-    padding: 5px 14px;
-    font-size: 0.83rem;
-    font-weight: 600;
-    cursor: pointer;
-    color: #555;
-    transition: all 0.15s;
+    background: #f0f3f4; border: 2px solid transparent; border-radius: 50px;
+    padding: 5px 14px; font-size: 0.83rem; font-weight: 600; cursor: pointer; color: #555; transition: all 0.15s;
   }
   .ust-filter-chip:hover { background: #dce6f0; }
-  .ust-filter-chip.active { background: #1abc9c; color: #fff; border-color: #1abc9c; }
-  /* Cards grid */
-  .ust-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 18px;
-    margin-bottom: 32px;
-  }
+  .ust-filter-chip.ust-chip-active { background: #1abc9c; color: #fff; border-color: #1abc9c; }
+
+  .ust-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 18px; margin-bottom: 32px; }
+
   .ust-card {
-    background: #fff;
-    border-radius: 14px;
-    border: 2px solid #eaecef;
-    padding: 20px 20px 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    background: #fff; border-radius: 14px; border: 2px solid #eaecef;
+    padding: 20px 20px 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
     transition: all 0.2s;
-    position: relative;
-    cursor: pointer;
   }
-  .ust-card:hover {
-    border-color: #2471a3;
-    box-shadow: 0 6px 24px rgba(36,113,163,0.12);
-    transform: translateY(-2px);
-  }
-  .ust-card[data-hidden="true"] { display: none; }
-  .ust-card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  .ust-card-emoji {
-    font-size: 1.8rem;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  .ust-card-title {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: #1a5276;
-    margin: 0 0 2px;
-    line-height: 1.2;
-  }
-  .ust-card-subtitle {
-    font-size: 0.78rem;
-    color: #7f8c8d;
-    font-weight: 600;
-  }
-  .ust-card-goal {
-    font-size: 0.88rem;
-    color: #2c3e50;
-    margin-bottom: 12px;
-    line-height: 1.45;
-  }
-  .ust-card-goal strong { color: #1a5276; }
-  /* Tag pills */
-  .ust-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 12px;
-  }
-  .ust-tag {
-    border-radius: 50px;
-    padding: 3px 10px;
-    font-size: 0.74rem;
-    font-weight: 700;
-    letter-spacing: 0.2px;
-  }
+  .ust-card:hover { border-color: #2471a3; box-shadow: 0 6px 24px rgba(36,113,163,0.12); transform: translateY(-2px); }
+  .ust-card[data-hidden="true"] { display: none !important; }
+
+  .ust-card-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .ust-card-emoji { font-size: 1.8rem; line-height: 1; flex-shrink: 0; }
+  .ust-card-title { font-size: 1.05rem; font-weight: 800; color: #1a5276; margin: 0 0 2px; line-height: 1.2; }
+  .ust-card-subtitle { font-size: 0.78rem; color: #7f8c8d; font-weight: 600; }
+  .ust-card-goal { font-size: 0.88rem; color: #2c3e50; margin-bottom: 12px; line-height: 1.45; }
+
+  .ust-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .ust-tag { border-radius: 50px; padding: 3px 10px; font-size: 0.74rem; font-weight: 700; }
   .ust-tag-age { background: #fef9e7; color: #9a7d0a; border: 1px solid #f9e79f; }
   .ust-tag-access { background: #eafaf1; color: #1e8449; border: 1px solid #a9dfbf; }
   .ust-tag-duration { background: #eaf3fb; color: #1a5276; border: 1px solid #aed6f1; }
   .ust-tag-money { background: #fdf2f8; color: #8e44ad; border: 1px solid #d7bde2; }
   .ust-tag-req { background: #fdfefe; color: #717d7e; border: 1px solid #d5d8dc; }
-  /* Expand details */
+
   .ust-details-btn {
-    background: none;
-    border: none;
-    color: #2471a3;
-    font-size: 0.83rem;
-    font-weight: 700;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: 4px;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    background: none; border: none; color: #2471a3; font-size: 0.83rem;
+    font-weight: 700; cursor: pointer; padding: 0; display: flex; align-items: center;
+    gap: 4px; margin-top: 4px; text-decoration: underline; text-underline-offset: 3px;
   }
   .ust-details-body {
-    display: none;
-    margin-top: 10px;
-    background: #f8fafc;
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 0.84rem;
-    color: #444;
-    line-height: 1.5;
+    display: none; margin-top: 10px; background: #f8fafc; border-radius: 10px;
+    padding: 12px 14px; font-size: 0.84rem; color: #444; line-height: 1.5;
   }
-  .ust-details-body.open { display: block; }
-  .ust-details-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 5px;
-    align-items: flex-start;
-  }
-  .ust-details-row-label {
-    font-weight: 700;
-    color: #1a5276;
-    min-width: 80px;
-    flex-shrink: 0;
-  }
-  /* Section header */
+  .ust-details-body.ust-open { display: block; }
+  .ust-details-row { display: flex; gap: 8px; margin-bottom: 5px; align-items: flex-start; }
+  .ust-details-row-label { font-weight: 700; color: #1a5276; min-width: 80px; flex-shrink: 0; }
+
   .ust-section-head {
-    background: #f0f4f8;
-    border-left: 5px solid #1a5276;
-    border-radius: 0 10px 10px 0;
-    padding: 12px 18px;
-    margin: 28px 0 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    background: #f0f4f8; border-left: 5px solid #1a5276; border-radius: 0 10px 10px 0;
+    padding: 12px 18px; margin: 28px 0 16px; display: flex; align-items: center; gap: 10px;
   }
-  .ust-section-head h3 {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #1a5276;
-    margin: 0;
-  }
-  .ust-section-head span { font-size: 1.4rem; }
-  /* Quick-pick guide */
-  .ust-guide {
-    background: linear-gradient(135deg, #eafaf1, #eaf3fb);
-    border-radius: 14px;
-    padding: 24px 24px 18px;
-    margin-bottom: 28px;
-    border: 1px solid #d1eaf9;
-  }
-  .ust-guide h3 {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: #1a5276;
-    margin: 0 0 14px;
-  }
-  .ust-guide-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
-  }
+  .ust-section-head h3 { font-size: 1.1rem; font-weight: 800; color: #1a5276; margin: 0; }
+
+  .ust-guide { background: linear-gradient(135deg, #eafaf1, #eaf3fb); border-radius: 14px; padding: 24px 24px 18px; margin-bottom: 28px; border: 1px solid #d1eaf9; }
+  .ust-guide h3 { font-size: 1.05rem; font-weight: 800; color: #1a5276; margin: 0 0 14px; }
+  .ust-guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
   .ust-guide-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 14px 16px;
-    border: 1.5px solid #d1eaf9;
-    cursor: pointer;
-    transition: all 0.15s;
+    background: #fff; border-radius: 10px; padding: 14px 16px;
+    border: 1.5px solid #d1eaf9; cursor: pointer; transition: all 0.15s;
   }
-  .ust-guide-card:hover {
-    border-color: #2471a3;
-    box-shadow: 0 3px 12px rgba(36,113,163,0.1);
-  }
-  .ust-guide-card-q {
-    font-size: 0.87rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 6px;
-  }
-  .ust-guide-card-a {
-    font-size: 0.8rem;
-    color: #2471a3;
-    font-weight: 600;
-  }
-  /* Mobile */
+  .ust-guide-card:hover { border-color: #2471a3; box-shadow: 0 3px 12px rgba(36,113,163,0.1); }
+  .ust-guide-card-q { font-size: 0.87rem; font-weight: 700; color: #2c3e50; margin-bottom: 6px; }
+  .ust-guide-card-a { font-size: 0.8rem; color: #2471a3; font-weight: 600; }
+
   @media (max-width: 600px) {
     .ust-hero { padding: 22px 16px 18px; }
     .ust-hero h1 { font-size: 1.4rem; }
@@ -6112,92 +5946,86 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 
 <div class="ust-hero">
-  <h1>🤝 Unterstützung in Stuttgart</h1>
-  <p>Alle Angebote – von der Schule bis zur Ausbildung – auf einen Blick. Für Jugendliche und Berater*innen.</p>
+  <h1>Unterstuetzung in Stuttgart</h1>
+  <p>Alle Angebote von der Schule bis zur Ausbildung auf einen Blick. Fuer Jugendliche und Berater*innen.</p>
 </div>
 
-<!-- Quick-Finder -->
 <div class="ust-guide">
-  <h3>⚡ Schnell-Finder – Was passt zu mir?</h3>
+  <h3>Schnell-Finder - Was passt zu mir?</h3>
   <div class="ust-guide-grid">
-    <div class="ust-guide-card" onclick="ustSetPhase('vor'); ustSetFilter('kein-abschluss')">
+    <div class="ust-guide-card" onclick="ustSetPhase('vor'); ustDoFilter('vor','kein-abschluss')">
       <div class="ust-guide-card-q">Ich habe noch keinen Schulabschluss</div>
-      <div class="ust-guide-card-a">→ VOR der Ausbildung · Kein Abschluss</div>
+      <div class="ust-guide-card-a">VOR der Ausbildung - Kein Abschluss</div>
     </div>
-    <div class="ust-guide-card" onclick="ustSetPhase('vor'); ustSetFilter('orientierung')">
-      <div class="ust-guide-card-q">Ich weiß nicht, was ich machen soll</div>
-      <div class="ust-guide-card-a">→ VOR der Ausbildung · Orientierung</div>
+    <div class="ust-guide-card" onclick="ustSetPhase('vor'); ustDoFilter('vor','orientierung')">
+      <div class="ust-guide-card-q">Ich weiss nicht, was ich machen soll</div>
+      <div class="ust-guide-card-a">VOR der Ausbildung - Orientierung</div>
     </div>
-    <div class="ust-guide-card" onclick="ustSetPhase('vor'); ustSetFilter('kein-platz')">
-      <div class="ust-guide-card-q">Ich habe keinen Ausbildungsplatz bekommen</div>
-      <div class="ust-guide-card-a">→ VOR der Ausbildung · Kein Platz</div>
+    <div class="ust-guide-card" onclick="ustSetPhase('vor'); ustDoFilter('vor','kein-platz')">
+      <div class="ust-guide-card-q">Ich habe keinen Ausbildungsplatz</div>
+      <div class="ust-guide-card-a">VOR der Ausbildung - Kein Platz</div>
     </div>
-    <div class="ust-guide-card" onclick="ustSetPhase('vor'); ustSetFilter('sprache')">
+    <div class="ust-guide-card" onclick="ustSetPhase('vor'); ustDoFilter('vor','sprache')">
       <div class="ust-guide-card-q">Ich spreche noch nicht gut Deutsch</div>
-      <div class="ust-guide-card-a">→ VOR der Ausbildung · Sprache</div>
+      <div class="ust-guide-card-a">VOR der Ausbildung - Sprache</div>
     </div>
-    <div class="ust-guide-card" onclick="ustSetPhase('waehrend'); ustSetFilter('abbruch')">
+    <div class="ust-guide-card" onclick="ustSetPhase('waehrend'); ustDoFilter('waehrend','abbruch')">
       <div class="ust-guide-card-q">Ich habe Probleme in meiner Ausbildung</div>
-      <div class="ust-guide-card-a">→ WÄHREND der Ausbildung · Drohender Abbruch</div>
+      <div class="ust-guide-card-a">WAEHREND der Ausbildung - Abbruch</div>
     </div>
-    <div class="ust-guide-card" onclick="ustSetPhase('waehrend'); ustSetFilter('alle')">
+    <div class="ust-guide-card" onclick="ustSetPhase('waehrend'); ustDoFilter('waehrend','alle')">
       <div class="ust-guide-card-q">Ich bin in Ausbildung und brauche Hilfe</div>
-      <div class="ust-guide-card-a">→ WÄHREND der Ausbildung · Alle</div>
+      <div class="ust-guide-card-a">WAEHREND der Ausbildung - Alle</div>
     </div>
   </div>
 </div>
 
-<!-- Phase-Tabs -->
 <div class="ust-phase-tabs">
-  <button class="ust-phase-btn active" onclick="ustSetPhase('vor')" id="ust-phase-btn-vor">📋 VOR der Ausbildung</button>
-  <button class="ust-phase-btn" onclick="ustSetPhase('waehrend')" id="ust-phase-btn-waehrend">🎓 WÄHREND der Ausbildung</button>
+  <button class="ust-phase-btn ust-active" onclick="ustSetPhase('vor')" id="ust-pbtn-vor">VOR der Ausbildung</button>
+  <button class="ust-phase-btn" onclick="ustSetPhase('waehrend')" id="ust-pbtn-waehrend">WAEHREND der Ausbildung</button>
 </div>
 
-<!-- ======================== PHASE: VOR ======================== -->
-<div class="ust-phase-panel active" id="ust-panel-vor">
-
-  <!-- Filter -->
+<!-- === PHASE VOR === -->
+<div class="ust-phase-panel ust-active" id="ust-panel-vor">
   <div class="ust-filter-bar">
     <span class="ust-filter-label">Filter:</span>
-    <button class="ust-filter-chip active" onclick="ustFilter('vor','alle')" id="ust-f-vor-alle">Alle</button>
-    <button class="ust-filter-chip" onclick="ustFilter('vor','kein-abschluss')" id="ust-f-vor-kein-abschluss">Kein Abschluss</button>
-    <button class="ust-filter-chip" onclick="ustFilter('vor','orientierung')" id="ust-f-vor-orientierung">Orientierung</button>
-    <button class="ust-filter-chip" onclick="ustFilter('vor','kein-platz')" id="ust-f-vor-kein-platz">Kein Ausbildungsplatz</button>
-    <button class="ust-filter-chip" onclick="ustFilter('vor','sprache')" id="ust-f-vor-sprache">Sprache</button>
-    <button class="ust-filter-chip" onclick="ustFilter('vor','jobcenter')" id="ust-f-vor-jobcenter">Jobcenter</button>
-    <button class="ust-filter-chip" onclick="ustFilter('vor','freiwillig')" id="ust-f-vor-freiwillig">Freiwilligendienste</button>
+    <button class="ust-filter-chip ust-chip-active" onclick="ustDoFilter('vor','alle')" id="ust-fc-vor-alle">Alle</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('vor','kein-abschluss')" id="ust-fc-vor-kein-abschluss">Kein Abschluss</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('vor','orientierung')" id="ust-fc-vor-orientierung">Orientierung</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('vor','kein-platz')" id="ust-fc-vor-kein-platz">Kein Ausbildungsplatz</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('vor','sprache')" id="ust-fc-vor-sprache">Sprache</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('vor','jobcenter')" id="ust-fc-vor-jobcenter">Jobcenter</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('vor','freiwillig')" id="ust-fc-vor-freiwillig">Freiwilligendienste</button>
   </div>
 
-  <!-- Sektion: Berufliche Schulen -->
-  <div class="ust-section-head"><span>🏫</span><h3>Berufliche Schulen (Angebote der Schule)</h3></div>
+  <div class="ust-section-head"><h3>Berufliche Schulen</h3></div>
   <div class="ust-grid">
 
     <div class="ust-card" data-tags="kein-abschluss orientierung sprache">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🗣️</div>
+        <div class="ust-card-emoji">DE</div>
         <div>
           <div class="ust-card-title">VAB-O</div>
-          <div class="ust-card-subtitle">Vorqualifizierung Arbeit/Beruf – ohne Deutschkenntnisse</div>
+          <div class="ust-card-subtitle">Vorqualifizierung ohne Deutschkenntnisse</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Ankommen im Schulsystem, Deutsch lernen, Berufsorientierung</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Ankommen, Deutsch lernen, Berufsorientierung</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 i.d.R. unter 18</span>
-        <span class="ust-tag ust-tag-duration">⏱ 1–2 Jahre</span>
-        <span class="ust-tag ust-tag-access">📍 Meldestelle (bis 30. April)</span>
-        <span class="ust-tag ust-tag-req">❌ Kein HSA nötig</span>
+        <span class="ust-tag ust-tag-age">i.d.R. unter 18</span>
+        <span class="ust-tag ust-tag-duration">1-2 Jahre</span>
+        <span class="ust-tag ust-tag-access">Meldestelle bis 30. April</span>
+        <span class="ust-tag ust-tag-req">Kein HSA noetig</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Schule auf Deutsch – neben Berufsorientierung und Grundwissen steht Sprachlernen im Vordergrund. Danach oft VAB für den Hauptschulabschluss.</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Zugang:</span><span>Über die Meldestelle oder private Schulen. Anmeldung bis 30. April.</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Voraus.:</span><span>Kein HSA, in der Regel unter 18 Jahre</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Schule auf Deutsch - neben Berufsorientierung und Grundwissen steht Sprachlernen im Vordergrund. Danach oft VAB fuer den Hauptschulabschluss.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Zugang:</span><span>Ueber die Meldestelle oder private Schulen. Anmeldung bis 30. April.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="kein-abschluss orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🛠️</div>
+        <div class="ust-card-emoji">AV</div>
         <div>
           <div class="ust-card-title">AVdual</div>
           <div class="ust-card-subtitle">Ausbildungsvorbereitung dual (ersetzt AV, VAB, BEJ)</div>
@@ -6205,242 +6033,217 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="ust-card-goal"><strong>Ziel:</strong> Schulabschluss nachholen, berufliche Orientierung, Ausbildungsreife herstellen</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 i.d.R. unter 18</span>
-        <span class="ust-tag ust-tag-duration">⏱ 1–2 Jahre</span>
-        <span class="ust-tag ust-tag-access">📍 Meldestelle (bis 30. April) oder direkt bei Schulen (bis 01. März)</span>
+        <span class="ust-tag ust-tag-age">i.d.R. unter 18</span>
+        <span class="ust-tag ust-tag-duration">1-2 Jahre</span>
+        <span class="ust-tag ust-tag-access">Meldestelle bis 30. April oder direkt bei Schulen bis 01. Maerz</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Schule + Betriebspraktika. Jugendliche mit und ohne Abschluss beim Übergang in die Ausbildung unterstützen. Verbesserung des HSA möglich.</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Zugang:</span><span>Über Meldestelle oder direkt bei den Schulen anmelden.</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Hinweis:</span><span>Zusammenschluss von AV, VAB und BEJ – diese Programme wurden durch AVdual ersetzt.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Schule und Betriebspraktika. Verbesserung des HSA moeglich. Zusammenschluss von AV, VAB und BEJ.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="kein-abschluss orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">✂️</div>
+        <div class="ust-card-emoji">FR</div>
         <div>
-          <div class="ust-card-title">BFK</div>
-          <div class="ust-card-subtitle">1-jähr. Berufsfachklasse Körperpflege</div>
+          <div class="ust-card-title">BFK - Berufsfachklasse Koerperpflege</div>
+          <div class="ust-card-subtitle">1-jaehrig, Vorbereitung Friseur-Ausbildung</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Vorbereitung auf Friseur-Ausbildung (+ HSA gleichwertiger Abschluss möglich)</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Vorbereitung auf Friseur-Ausbildung, HSA gleichwertiger Abschluss moeglich</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 i.d.R. unter 18</span>
-        <span class="ust-tag ust-tag-duration">⏱ 1 Jahr</span>
-        <span class="ust-tag ust-tag-access">📍 Gewerbliche Schule im Hoppenlau</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Vollzeitschule als Vorbereitung auf die duale Ausbildung Friseur*in. Ggf. Lehrzeitverkürzung möglich.</span></div>
+        <span class="ust-tag ust-tag-age">i.d.R. unter 18</span>
+        <span class="ust-tag ust-tag-duration">1 Jahr</span>
+        <span class="ust-tag ust-tag-access">Gewerbl. Schule im Hoppenlau</span>
       </div>
     </div>
 
   </div>
 
-  <!-- Sektion: Sonstige Angebote VOR Ausbildung -->
-  <div class="ust-section-head"><span>🏢</span><h3>Weitere Angebote zur Ausbildungsvorbereitung</h3></div>
+  <div class="ust-section-head"><h3>Weitere Angebote zur Ausbildungsvorbereitung</h3></div>
   <div class="ust-grid">
 
     <div class="ust-card" data-tags="orientierung kein-abschluss">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">📚</div>
+        <div class="ust-card-emoji">BV</div>
         <div>
-          <div class="ust-card-title">BvB</div>
-          <div class="ust-card-subtitle">Berufsvorbereitende Bildungsmaßnahme · Träger: Kolping</div>
+          <div class="ust-card-title">BvB - Berufsvorbereitende Bildungsmassnahme</div>
+          <div class="ust-card-subtitle">Traeger: Kolping</div>
         </div>
       </div>
       <div class="ust-card-goal"><strong>Ziel:</strong> Berufsorientierung, Ausbildungsvorbereitung, HSA nachholen</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-duration">⏱ ca. 10 Monate</span>
-        <span class="ust-tag ust-tag-access">📍 Berufsberatung (SGB III)</span>
-        <span class="ust-tag ust-tag-money">💶 BaB ~309€/Monat</span>
-        <span class="ust-tag ust-tag-req">✅ Erfüllt Schulpflicht</span>
+        <span class="ust-tag ust-tag-duration">ca. 10 Monate</span>
+        <span class="ust-tag ust-tag-access">Berufsberatung SGB III</span>
+        <span class="ust-tag ust-tag-money">BaB ca. 309 Euro/Monat inkl. Fahrtkosten</span>
+        <span class="ust-tag ust-tag-req">Erfuellt Schulpflicht</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Berufsorientierung in verschiedenen Berufsfeldern beim Träger. Ausbildungsreife erreichen, Ausbildungsplatzsuche, Praktika. HSA nachholen möglich.</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Vergütung:</span><span>BaB beantragbar, ca. 309€/Monat inkl. Fahrtkosten</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Hinweis:</span><span>AVdual ist i.d.R. vorrangig. Nachweis an Meldestelle erforderlich.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Berufsorientierung in verschiedenen Berufsfeldern. Ausbildungsreife erreichen, Ausbildungsplatzsuche, Praktika. HSA nachholen moeglich. AVdual ist i.d.R. vorrangig.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="kein-platz orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🏭</div>
+        <div class="ust-card-emoji">EQ</div>
         <div>
-          <div class="ust-card-title">EQ – Einstiegsqualifizierung</div>
-          <div class="ust-card-subtitle">Langzeitpraktikum mit Übernahmeziel</div>
+          <div class="ust-card-title">EQ - Einstiegsqualifizierung</div>
+          <div class="ust-card-subtitle">Langzeitpraktikum mit Ziel Ausbildung</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Langzeitpraktikum im Betrieb – Ziel: Übernahme in Ausbildung</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Langzeitpraktikum im Betrieb - Ziel: Uebernahme in Ausbildung</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 i.d.R. unter 25</span>
-        <span class="ust-tag ust-tag-duration">⏱ 4–12 Monate (bis Anfang Mai)</span>
-        <span class="ust-tag ust-tag-access">📍 Berufsberatung / Eigenbewerbung</span>
-        <span class="ust-tag ust-tag-money">💶 BaB ~280€/Monat</span>
-        <span class="ust-tag ust-tag-req">✅ Ausbildungsreife nötig</span>
+        <span class="ust-tag ust-tag-age">i.d.R. unter 25</span>
+        <span class="ust-tag ust-tag-duration">4-12 Monate, bis Anfang Mai</span>
+        <span class="ust-tag ust-tag-access">Berufsberatung oder Eigenbewerbung</span>
+        <span class="ust-tag ust-tag-money">BaB ca. 280 Euro/Monat</span>
+        <span class="ust-tag ust-tag-req">Ausbildungsreife noetig</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Von der Agentur für Arbeit gefördertes Langzeitpraktikum für alle, die keinen Ausbildungsplatz bekommen haben. Ausbildungszeit kann verkürzt werden. Sprachkurse möglich.</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Voraus.:</span><span>Ausbildungsreife, klarer Berufswunsch, ohne Ausbildungsplatz</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Von der Agentur fuer Arbeit gefoerdertes Langzeitpraktikum. Ausbildungszeit kann verkuerzt werden. Sprachkurse moeglich.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="kein-platz orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🚂</div>
+        <div class="ust-card-emoji">DB</div>
         <div>
-          <div class="ust-card-title">Chance plus – Deutsche Bahn</div>
-          <div class="ust-card-subtitle">„EQ bei der DB"</div>
+          <div class="ust-card-title">Chance plus - Deutsche Bahn</div>
+          <div class="ust-card-subtitle">EQ bei der DB</div>
         </div>
       </div>
       <div class="ust-card-goal"><strong>Ziel:</strong> Intensive Vorbereitung auf Berufsausbildung bei der Deutschen Bahn</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-duration">⏱ 6–12 Monate</span>
-        <span class="ust-tag ust-tag-access">📍 Bewerbung direkt bei der DB</span>
-        <span class="ust-tag ust-tag-money">💶 ~450€/Monat + DB Jobticket</span>
-        <span class="ust-tag ust-tag-req">✅ Schulabschluss + ausbildungssuchend gemeldet</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Praktische und schulische Phasen bei der DB. Ziel: Übernahme in eine Berufsausbildung.</span></div>
+        <span class="ust-tag ust-tag-duration">6-12 Monate</span>
+        <span class="ust-tag ust-tag-access">Bewerbung direkt bei der DB</span>
+        <span class="ust-tag ust-tag-money">ca. 450 Euro/Monat und DB Jobticket</span>
+        <span class="ust-tag ust-tag-req">Schulabschluss und ausbildungssuchend gemeldet</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="kein-platz orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🚗</div>
+        <div class="ust-card-emoji">PO</div>
         <div>
-          <div class="ust-card-title">Förderjahr – Porsche AG</div>
-          <div class="ust-card-subtitle">„EQ bei Porsche"</div>
+          <div class="ust-card-title">Foerderjahr - Porsche AG</div>
+          <div class="ust-card-subtitle">EQ bei Porsche</div>
         </div>
       </div>
       <div class="ust-card-goal"><strong>Ziel:</strong> Vorbereitung auf technische Ausbildung bei Porsche</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-duration">⏱ Beginn: 1. November</span>
-        <span class="ust-tag ust-tag-access">📍 Bewerbung beim Ausbildungscampus</span>
-        <span class="ust-tag ust-tag-money">💶 512€/Monat</span>
-        <span class="ust-tag ust-tag-req">✅ Schulabschluss > 1 Jahr zurück</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Für Jugendliche mit schwierigen sozialen Lebensumständen und dem Wunsch, einen technischen Beruf zu erlernen. Besondere Förderfähigkeit wird vorausgesetzt.</span></div>
+        <span class="ust-tag ust-tag-duration">Beginn 1. November</span>
+        <span class="ust-tag ust-tag-access">Bewerbung beim Ausbildungscampus</span>
+        <span class="ust-tag ust-tag-money">512 Euro/Monat</span>
+        <span class="ust-tag ust-tag-req">Schulabschluss mehr als 1 Jahr zurueck, besondere Foerderfaehigkeit</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="jobcenter kein-abschluss orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🌟</div>
+        <div class="ust-card-emoji">CA</div>
         <div>
-          <div class="ust-card-title">Reif für die Ausbildung</div>
-          <div class="ust-card-subtitle">Träger: Caritas</div>
+          <div class="ust-card-title">Reif fuer die Ausbildung</div>
+          <div class="ust-card-subtitle">Traeger: Caritas</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildungsreife klären und erreichen, Übergang in BaEplus</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildungsreife erreichen, Uebergang in BaEplus</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-access">📍 Jobcenter</span>
-        <span class="ust-tag ust-tag-duration">⏱ Beginn Frühjahr bis Ausbildungsbeginn</span>
-        <span class="ust-tag ust-tag-req">✅ ALG2-Bezug</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Oft eingesetzt als „Vorschaltmaßnahme für BaEplus". Vermittlung in Ausbildung oder anschließend Übergang in BaEplus.</span></div>
+        <span class="ust-tag ust-tag-access">Jobcenter</span>
+        <span class="ust-tag ust-tag-duration">Beginn Fruehjahr</span>
+        <span class="ust-tag ust-tag-req">ALG2-Bezug</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="jobcenter orientierung kein-abschluss">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">💪</div>
+        <div class="ust-card-emoji">JL</div>
         <div>
           <div class="ust-card-title">Joblinge</div>
-          <div class="ust-card-subtitle">Träger: JOBLINGE e.V.</div>
+          <div class="ust-card-subtitle">Traeger: JOBLINGE e.V.</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Qualifizierung für Ausbildungs- oder Arbeitsplatz</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Qualifizierung fuer Ausbildungs- oder Arbeitsplatz</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-duration">⏱ 6 Monate</span>
-        <span class="ust-tag ust-tag-access">📍 Jobcenter (ggf. direkt anfragen)</span>
-        <span class="ust-tag ust-tag-req">✅ ALG2-Bezug</span>
+        <span class="ust-tag ust-tag-duration">6 Monate</span>
+        <span class="ust-tag ust-tag-access">Jobcenter</span>
+        <span class="ust-tag ust-tag-req">ALG2-Bezug</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Vollzeitprogramm mit persönlichem Mentor in einem Kooperationsbetrieb. Workshops (Kommunikation, Konflikt), Sport/Kultur, Praxisphasen (6–8 Wochen), Bewerbungspraktikum.</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Besonders:</span><span>Joblinge-Kompass-Programm für junge Menschen mit Fluchthintergrund (intensive Sprachförderung)</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Vollzeitprogramm mit persoenlichem Mentor. Workshops (Kommunikation, Konflikt), Sport/Kultur, Praxisphasen, Bewerbungspraktikum. Kompass-Programm fuer Jugendliche mit Fluchthintergrund.</span></div>
       </div>
     </div>
 
   </div>
 
-  <!-- Sektion: Sprache & Schulabschluss -->
-  <div class="ust-section-head"><span>📖</span><h3>Sprache &amp; Schulabschluss nachholen</h3></div>
+  <div class="ust-section-head"><h3>Sprache und Schulabschluss nachholen</h3></div>
   <div class="ust-grid">
 
     <div class="ust-card" data-tags="jobcenter kein-abschluss orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🌱</div>
+        <div class="ust-card-emoji">400</div>
         <div>
           <div class="ust-card-title">400+Zukunft</div>
-          <div class="ust-card-subtitle">Träger: Caritas JAP, sbr, GJB, Neue Arbeit</div>
+          <div class="ust-card-subtitle">Traeger: Caritas JAP, sbr, GJB, Neue Arbeit</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Heranführung an Ausbildungsreife und Arbeitsmarktfähigkeit, HSA möglich</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Heranfuehren an Ausbildungsreife und Arbeitsmarktfaehigkeit, HSA moeglich</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 16–27 Jahre</span>
-        <span class="ust-tag ust-tag-duration">⏱ Einstieg jederzeit, bis 18 Monate</span>
-        <span class="ust-tag ust-tag-access">📍 JobCon oder Träger direkt</span>
-        <span class="ust-tag ust-tag-money">💶 538€/Monat + VVS (bei Vollzeit)</span>
-        <span class="ust-tag ust-tag-req">✅ Erfüllt Schulpflicht</span>
+        <span class="ust-tag ust-tag-age">16-27 Jahre</span>
+        <span class="ust-tag ust-tag-duration">Einstieg jederzeit, bis 18 Monate</span>
+        <span class="ust-tag ust-tag-access">JobCon oder Traeger direkt</span>
+        <span class="ust-tag ust-tag-money">538 Euro/Monat und VVS bei Vollzeit</span>
+        <span class="ust-tag ust-tag-req">Erfuellt Schulpflicht</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Arbeitswelt kennenlernen (beim Träger), sozialpäd. Betreuung, Berufsorientierung, Praktika. Ggf. Vorbereitung auf Schulfremdenprüfungen bei der VHS (14-tägiger Wechsel Schule/Arbeit). Vollzeit = 35 Std./Woche.</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Hinweis:</span><span>Ohne HzE / Lebensunterhalt über SGB VIII. Bei ALG2: Zustimmung des persönlichen Ansprechpartners nötig.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Arbeitswelt kennenlernen beim Traeger, soz.paed. Betreuung, Berufsorientierung, Praktika. Vorbereitung auf Schulfremdenprüfungen bei VHS moeglich. Vollzeit 35 Std./Woche. Fuer Jugendliche ohne HzE/SGB VIII.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="jobcenter kein-abschluss orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">👣</div>
+        <div class="ust-card-emoji">SBS</div>
         <div>
           <div class="ust-card-title">Step by step</div>
-          <div class="ust-card-subtitle">Träger: Caritas JAP, sbr, GJB, Neue Arbeit</div>
+          <div class="ust-card-subtitle">Traeger: Caritas JAP, sbr, GJB, Neue Arbeit</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Wie 400+Zukunft – für Jugendliche mit HzE oder Leistungen nach SGB VIII</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Wie 400+Zukunft - fuer Jugendliche mit HzE oder Leistungen nach SGB VIII</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 16–27 Jahre (mit HzE/SGB VIII)</span>
-        <span class="ust-tag ust-tag-duration">⏱ Einstieg jederzeit, bis 18 Monate</span>
-        <span class="ust-tag ust-tag-access">📍 JobCon oder Träger direkt</span>
-        <span class="ust-tag ust-tag-req">✅ Zustimmung BZ/WiHi</span>
+        <span class="ust-tag ust-tag-age">16-27 Jahre mit HzE/SGB VIII</span>
+        <span class="ust-tag ust-tag-duration">Einstieg jederzeit, bis 18 Monate</span>
+        <span class="ust-tag ust-tag-access">JobCon oder Traeger direkt</span>
+        <span class="ust-tag ust-tag-req">Zustimmung BZ/WiHi</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="kein-abschluss">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🏠</div>
+        <div class="ust-card-emoji">HdL</div>
         <div>
           <div class="ust-card-title">Haus der Lebenschance</div>
-          <div class="ust-card-subtitle">Träger: eva (mit Johanniter-Orden + Stadt Stuttgart)</div>
+          <div class="ust-card-subtitle">Traeger: eva mit Johanniter-Orden und Stadt Stuttgart</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> HSA in geschütztem Rahmen</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Hauptschulabschluss in geschuetztem Rahmen</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 17–25 Jahre</span>
-        <span class="ust-tag ust-tag-duration">⏱ Start ca. 4 Wochen vor Sommerferien</span>
-        <span class="ust-tag ust-tag-access">📍 Gespräch beim HdL (ab Januar)</span>
+        <span class="ust-tag ust-tag-age">17-25 Jahre</span>
+        <span class="ust-tag ust-tag-duration">Start ca. 4 Wochen vor Sommerferien</span>
+        <span class="ust-tag ust-tag-access">Gespraech beim HdL ab Januar</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Individuelle Vorbereitung auf Schulfremdenprüfungen. Persönlichkeitsentwicklung und Stabilisierung durch strukturierten Tagesablauf. Begleitung durch Jobcoach. Max. 15 Teilnehmer. 4 Wochen Probezeit.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Individuelle Vorbereitung auf Schulfremdenprüfungen. Persoenlichkeitsentwicklung, Stabilisierung durch strukturierten Tagesablauf. Begleitung durch Jobcoach. Max. 15 Teilnehmer. 4 Wochen Probezeit.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="kein-abschluss">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">📝</div>
+        <div class="ust-card-emoji">SFP</div>
         <div>
           <div class="ust-card-title">Schulfremdenprüfung</div>
           <div class="ust-card-subtitle">Schulabschluss auf dem zweiten Bildungsweg</div>
@@ -6448,188 +6251,168 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="ust-card-goal"><strong>Ziel:</strong> Schulabschluss offiziell nachholen</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-duration">⏱ Anmeldung bis 01. März</span>
-        <span class="ust-tag ust-tag-access">📍 Staatliches Schulamt</span>
+        <span class="ust-tag ust-tag-duration">Anmeldung bis 01. Maerz</span>
+        <span class="ust-tag ust-tag-access">Staatliches Schulamt</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Prüfung an einer staatlichen Schule (identische Prüfungen und Termine). Für alle, die nachträglich einen Schulabschluss nachholen wollen. Vorbereitungskurse z.B. bei der VHS (Sept.–Juli, kostenpflichtig).</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Voraus.:</span><span>In BW gemeldet. Abschlussprüfung weder schon bestanden noch zweimal abgelegt.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Prüfung an staatlicher Schule. Identische Prüfungen und Termine. Vorbereitungskurse z.B. bei der VHS Sept.-Juli, kostenpflichtig. In BW gemeldet sein noetig.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="sprache kein-abschluss">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🌍</div>
+        <div class="ust-card-emoji">LI</div>
         <div>
           <div class="ust-card-title">LISA</div>
-          <div class="ust-card-subtitle">Träger: Henke, AWO</div>
+          <div class="ust-card-subtitle">Traeger: Henke, AWO</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Sprachhürden überwinden + HSA nachholen für junge Einwanderer</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Sprachhuerdenn ueberwinden und HSA nachholen fuer junge Einwanderer</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 Unter 27, in letzten 5 Jahren eingereist</span>
-        <span class="ust-tag ust-tag-duration">⏱ Anmeldung bis März (Vorkurs ab Mai)</span>
-        <span class="ust-tag ust-tag-req">✅ Sprachniveau mind. A2, in Stuttgart gemeldet</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Vorbereitung auf Schulfremdenprüfungen für junge Einwanderer ohne (in Deutschland verwertbaren) Schulabschluss. Vorkurs ab Mai (30 Std./Woche), Hauptkurs ab September (35 Std./Woche).</span></div>
+        <span class="ust-tag ust-tag-age">Unter 27, in letzten 5 Jahren eingereist</span>
+        <span class="ust-tag ust-tag-duration">Anmeldung bis Maerz, Vorkurs ab Mai</span>
+        <span class="ust-tag ust-tag-req">Sprachniveau mind. A2, in Stuttgart gemeldet</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="sprache">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🗺️</div>
+        <div class="ust-card-emoji">DK</div>
         <div>
           <div class="ust-card-title">Integrationskurse</div>
-          <div class="ust-card-subtitle">Träger: Henke, DAA, AWO, VHS, Caritas, tricos u.a.</div>
+          <div class="ust-card-subtitle">Traeger: Henke, DAA, AWO, VHS, Caritas u.a.</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Deutschkenntnisse aufbauen (Basis bis B1)</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Deutschkenntnisse aufbauen bis B1</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-access">📍 Berechtigungsschein BAMF / Jobcenter</span>
-        <span class="ust-tag ust-tag-req">✅ Gute Bleibeperspektive</span>
+        <span class="ust-tag ust-tag-access">Berechtigungsschein BAMF oder Jobcenter</span>
+        <span class="ust-tag ust-tag-req">Gute Bleibeperspektive</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Deutschkurs (Basis + Aufbaukurs) + Orientierungskurs. Abschlusstest: Sprachprüfung B1 + „Leben in Deutschland". Auch Alphabetisierungskurse vorhanden.</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Suche:</span><span>service.stuttgart.de/lhs-services/dks/de</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Deutschkurs (Basis plus Aufbaukurs) und Orientierungskurs. Abschlusstest: Sprachprüfung B1 und Leben in Deutschland. Auch Alphabetisierungskurse vorhanden.</span></div>
       </div>
     </div>
 
   </div>
 
-  <!-- Sektion: Aktivierung & Unterstützung -->
-  <div class="ust-section-head"><span>🙋</span><h3>Aktivierung &amp; Unterstützung in schwierigen Situationen</h3></div>
+  <div class="ust-section-head"><h3>Aktivierung und Unterstuetzung in schwierigen Situationen</h3></div>
   <div class="ust-grid">
 
     <div class="ust-card" data-tags="jobcenter orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">✊</div>
+        <div class="ust-card-emoji">YYC</div>
         <div>
           <div class="ust-card-title">Yes You Can!</div>
-          <div class="ust-card-subtitle">Träger: eva</div>
+          <div class="ust-card-subtitle">Traeger: eva</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Aktivierungshilfe – Heranführung an Maßnahmefähigkeit &amp; berufliche Planung</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Aktivierungshilfe, Heranfuehrung an Massnahmefahigkeit und berufliche Planung</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 Unter 27 Jahre</span>
-        <span class="ust-tag ust-tag-access">📍 Jobcenter / JobCon</span>
-        <span class="ust-tag ust-tag-req">✅ ALG2-Bezug</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Aufsuchende Arbeit, individuelle Betreuung, Gruppenangebote. Für Jugendliche, die durch bisherige Maßnahmen nicht mehr erreicht wurden.</span></div>
+        <span class="ust-tag ust-tag-age">Unter 27 Jahre</span>
+        <span class="ust-tag ust-tag-access">Jobcenter oder JobCon</span>
+        <span class="ust-tag ust-tag-req">ALG2-Bezug</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="jobcenter orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🛡️</div>
+        <div class="ust-card-emoji">SIL</div>
         <div>
           <div class="ust-card-title">SILKYplus</div>
-          <div class="ust-card-subtitle">Träger: sbr gGmbH</div>
+          <div class="ust-card-subtitle">Traeger: sbr gGmbH</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Jugendarmut bekämpfen, Unterstützung in schwierigen Lebenslagen</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Jugendarmut bekaempfen, Unterstuetzung in schwierigen Lebenslagen</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 Unter 25 Jahre</span>
+        <span class="ust-tag ust-tag-age">Unter 25 Jahre</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Unterstützung in individuellen Problemlagen: schulisch, beruflich, familiär, finanziell, gesundheitlich. Auch bei Problemen mit Polizei oder Gericht.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Unterstuetzung in individuellen Problemlagen: schulisch, beruflich, familiaer, finanziell, gesundheitlich. Auch bei Problemen mit Polizei oder Gericht.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="sprache orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🌐</div>
+        <div class="ust-card-emoji">NIF</div>
         <div>
           <div class="ust-card-title">Projekt NIFAplus</div>
-          <div class="ust-card-subtitle">Netzwerk zur beruflichen Teilhabe von Geflüchteten</div>
+          <div class="ust-card-subtitle">Netzwerk zur beruflichen Teilhabe von Gefluechteten</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Berufsorientierung, Vermittlung in Schule, Ausbildung und Arbeit für Geflüchtete</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Berufsorientierung und Vermittlung in Schule, Ausbildung und Arbeit fuer Gefluechtete</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-access">📍 AGDW e.V. / eva / Werkstatt PARITÄT</span>
-        <span class="ust-tag ust-tag-req">✅ Aufenthaltserlaubnis/-gestattung/Duldung (kein absolutes Arbeitsverbot)</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Berufsorientierung, Kompetenzfeststellung, Bewerbungstraining, rechtliche Beratung (Ausländerrecht in Bezug auf Arbeit, Ausbildung, Praktikum).</span></div>
+        <span class="ust-tag ust-tag-access">AGDW e.V. oder eva oder Werkstatt PARITAET</span>
+        <span class="ust-tag ust-tag-req">Aufenthaltserlaubnis oder -gestattung oder Duldung ohne absolutes Arbeitsverbot</span>
       </div>
     </div>
 
   </div>
 
-  <!-- Sektion: Freiwilligendienste -->
-  <div class="ust-section-head"><span>🌿</span><h3>Freiwilligendienste</h3></div>
+  <div class="ust-section-head"><h3>Freiwilligendienste</h3></div>
   <div class="ust-grid">
 
     <div class="ust-card" data-tags="freiwillig orientierung">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">💚</div>
+        <div class="ust-card-emoji">FSJ</div>
         <div>
-          <div class="ust-card-title">FSJ / FÖJ / BFD</div>
-          <div class="ust-card-subtitle">Freiwilliges Soziales / Ökologisches Jahr · Bundesfreiwilligendienst</div>
+          <div class="ust-card-title">FSJ / FOeJ / BFD</div>
+          <div class="ust-card-subtitle">Freiwilliges Jahr oder Bundesfreiwilligendienst</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Soziales Praktikum mit Begleitung – Orientierung und Erfahrung sammeln</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Soziales Praktikum mit Begleitung - Orientierung und Erfahrung sammeln</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 FSJ: Unter 27 · BFD: ohne Altersgrenze</span>
-        <span class="ust-tag ust-tag-duration">⏱ 6–18 Monate (mind. 6 Mon.)</span>
-        <span class="ust-tag ust-tag-access">📍 Bewerbung bei den Trägern</span>
-        <span class="ust-tag ust-tag-req">✅ Schulpflicht erfüllt</span>
+        <span class="ust-tag ust-tag-age">FSJ: Unter 27 - BFD: ohne Altersgrenze</span>
+        <span class="ust-tag ust-tag-duration">6-18 Monate</span>
+        <span class="ust-tag ust-tag-access">Bewerbung bei den Traegern - Anlaufstelle: Jugendagentur Stuttgart</span>
+        <span class="ust-tag ust-tag-req">Schulpflicht erfuellt</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Diakonie bietet z.B. FSJ für Geflüchtete, FSJ Fokus (berufliche Neu-Orientierung), FSJ Inklusion. Fachhochschulreife kann erlangt werden (nach Abschluss Klasse 11/12 Gymnasium).</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Anlaufstelle:</span><span>Jugendagentur Stuttgart</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Träger:</span><span>u.a. Diakonie, Wohlfahrtswerk, IB, AWO, Caritas, eva</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Diakonie bietet z.B. FSJ fuer Gefluechtete, FSJ Fokus (berufliche Neu-Orientierung), FSJ Inklusion. Fachhochschulreife kann erlangt werden nach Abschluss Klasse 11 oder 12.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Traeger:</span><span>u.a. Diakonie, Wohlfahrtswerk, IB, AWO, Caritas, eva</span></div>
       </div>
     </div>
 
   </div>
+</div>
+<!-- END ust-panel-vor -->
 
-</div><!-- end ust-panel-vor -->
-
-
-<!-- ======================== PHASE: WÄHREND ======================== -->
+<!-- === PHASE WAEHREND === -->
 <div class="ust-phase-panel" id="ust-panel-waehrend">
-
-  <!-- Filter -->
   <div class="ust-filter-bar">
     <span class="ust-filter-label">Filter:</span>
-    <button class="ust-filter-chip active" onclick="ustFilter('waehrend','alle')" id="ust-f-waehrend-alle">Alle</button>
-    <button class="ust-filter-chip" onclick="ustFilter('waehrend','abbruch')" id="ust-f-waehrend-abbruch">Drohender Abbruch</button>
-    <button class="ust-filter-chip" onclick="ustFilter('waehrend','teilzeit')" id="ust-f-waehrend-teilzeit">Teilzeit / Familie</button>
-    <button class="ust-filter-chip" onclick="ustFilter('waehrend','kein-platz')" id="ust-f-waehrend-kein-platz">Noch kein Ausbildungsplatz</button>
-    <button class="ust-filter-chip" onclick="ustFilter('waehrend','jobcenter')" id="ust-f-waehrend-jobcenter">Jobcenter</button>
+    <button class="ust-filter-chip ust-chip-active" onclick="ustDoFilter('waehrend','alle')" id="ust-fc-waehrend-alle">Alle</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('waehrend','abbruch')" id="ust-fc-waehrend-abbruch">Drohender Abbruch</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('waehrend','teilzeit')" id="ust-fc-waehrend-teilzeit">Teilzeit / Familie</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('waehrend','kein-platz')" id="ust-fc-waehrend-kein-platz">Kein Ausbildungsplatz</button>
+    <button class="ust-filter-chip" onclick="ustDoFilter('waehrend','jobcenter')" id="ust-fc-waehrend-jobcenter">Jobcenter</button>
   </div>
 
-  <div class="ust-section-head"><span>🎓</span><h3>Ausbildungsformen</h3></div>
+  <div class="ust-section-head"><h3>Ausbildungsformen</h3></div>
   <div class="ust-grid">
 
     <div class="ust-card" data-tags="alle">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🏢</div>
+        <div class="ust-card-emoji">BB</div>
         <div>
           <div class="ust-card-title">Betriebliche Ausbildung</div>
-          <div class="ust-card-subtitle">Duale Ausbildung im Betrieb + Berufsschule</div>
+          <div class="ust-card-subtitle">Duale Ausbildung im Betrieb und Berufsschule</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Berufsabschluss in 2–3 Jahren</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Berufsabschluss in 2-3 Jahren</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-duration">⏱ 2–3 Jahre</span>
-        <span class="ust-tag ust-tag-access">📍 Bewerbung beim Betrieb</span>
-        <span class="ust-tag ust-tag-req">✅ Ausbildungsreife</span>
+        <span class="ust-tag ust-tag-duration">2-3 Jahre</span>
+        <span class="ust-tag ust-tag-access">Bewerbung beim Betrieb</span>
+        <span class="ust-tag ust-tag-req">Ausbildungsreife</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="alle">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🏫</div>
+        <div class="ust-card-emoji">SA</div>
         <div>
           <div class="ust-card-title">Schulische Ausbildung</div>
           <div class="ust-card-subtitle">Berufsfachschulen, Berufskollegs, Fachschulen</div>
@@ -6637,214 +6420,199 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="ust-card-goal"><strong>Ziel:</strong> Staatlich anerkannter Berufsabschluss</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-duration">⏱ 2–3 Jahre</span>
-        <span class="ust-tag ust-tag-access">📍 Bewerbung bei der Schule</span>
-        <span class="ust-tag ust-tag-req">✅ Ausbildungsreife</span>
+        <span class="ust-tag ust-tag-duration">2-3 Jahre</span>
+        <span class="ust-tag ust-tag-access">Bewerbung bei der Schule</span>
+        <span class="ust-tag ust-tag-req">Ausbildungsreife</span>
       </div>
     </div>
 
   </div>
 
-  <div class="ust-section-head"><span>🤲</span><h3>Unterstützung in der Ausbildung</h3></div>
+  <div class="ust-section-head"><h3>Unterstuetzung in der Ausbildung</h3></div>
   <div class="ust-grid">
 
     <div class="ust-card" data-tags="abbruch">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🎯</div>
+        <div class="ust-card-emoji">FC</div>
         <div>
           <div class="ust-card-title">Faire Chancen in der Ausbildung</div>
-          <div class="ust-card-subtitle">Träger: DAA</div>
+          <div class="ust-card-subtitle">Traeger: DAA</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildungsverhältnis stabilisieren, erfolgreichen Abschluss sichern</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildungsverhaeltnis stabilisieren, erfolgreichen Abschluss sichern</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-req">✅ Azubis in 1BFS</span>
-        <span class="ust-tag ust-tag-duration">⏱ Einstieg jederzeit</span>
-        <span class="ust-tag ust-tag-access">📍 Über Träger</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Lernförderung für Azubis in der 1BFS. Sozialpädagogische Unterstützung möglich.</span></div>
+        <span class="ust-tag ust-tag-req">Azubis in 1BFS</span>
+        <span class="ust-tag ust-tag-duration">Einstieg jederzeit</span>
+        <span class="ust-tag ust-tag-access">Ueber Traeger</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="abbruch">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">📐</div>
+        <div class="ust-card-emoji">AsA</div>
         <div>
-          <div class="ust-card-title">AsA – Assistierte Ausbildung</div>
-          <div class="ust-card-subtitle">Träger: DAA, IB</div>
+          <div class="ust-card-title">AsA - Assistierte Ausbildung</div>
+          <div class="ust-card-subtitle">Traeger: DAA, IB</div>
         </div>
       </div>
       <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildung stabilisieren, Abschluss sichern</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-access">📍 Berufsberatung</span>
-        <span class="ust-tag ust-tag-req">✅ Ausbildungsvertrag</span>
+        <span class="ust-tag ust-tag-access">Berufsberatung</span>
+        <span class="ust-tag ust-tag-req">Ausbildungsvertrag</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Nachhilfe, Unterstützung bei Sprach- und Lernschwierigkeiten, Hilfe bei persönlichen Problemen, sozialpädagogische Begleitung. Für betriebliche Azubis mit schlechten Noten oder Problemen.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Nachhilfe, Unterstuetzung bei Sprach- und Lernschwierigkeiten, Hilfe bei persoenlichen Problemen, soz.paed. Begleitung. Fuer betriebliche Azubis mit Problemen oder schlechten Noten.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="abbruch kein-platz">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🔄</div>
+        <div class="ust-card-emoji">CAM</div>
         <div>
           <div class="ust-card-title">Cambio</div>
-          <div class="ust-card-subtitle">Träger: eva</div>
+          <div class="ust-card-subtitle">Traeger: eva</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildungssuche + Begleitung während Ausbildung, Abbrüche verhindern</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildungssuche und Begleitung waehrend Ausbildung, Abrueche verhindern</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 18–27 Jahre</span>
-        <span class="ust-tag ust-tag-duration">⏱ Einstieg jederzeit</span>
-        <span class="ust-tag ust-tag-access">📍 Über Träger</span>
-        <span class="ust-tag ust-tag-req">✅ Kein ALG2-Bezug · Keine Erstausbildung</span>
+        <span class="ust-tag ust-tag-age">18-27 Jahre</span>
+        <span class="ust-tag ust-tag-duration">Einstieg jederzeit</span>
+        <span class="ust-tag ust-tag-access">Ueber Traeger</span>
+        <span class="ust-tag ust-tag-req">Kein ALG2-Bezug, keine Erstausbildung</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Für Jugendliche, die trotz vieler Bemühungen keine Ausbildung finden oder bereits Abbrüche hatten. Bei betrieblicher und schulischer Ausbildung möglich. Nachhilfe in der Lernwerkstatt möglich.</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Fuer Jugendliche die trotz vieler Bemuehungen keine Ausbildung finden oder bereits Abrueche hatten. Auch bei schulischer Ausbildung moeglich. Nachhilfe in der Lernwerkstatt moeglich.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="abbruch">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">👴</div>
+        <div class="ust-card-emoji">VAP</div>
         <div>
           <div class="ust-card-title">VerAplus</div>
-          <div class="ust-card-subtitle">Senior Expert Service (SES)</div>
+          <div class="ust-card-subtitle">Senior Expert Service SES</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Abbrüche verhindern, Jugendliche in Ausbildung stärken</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Abrueche verhindern, Jugendliche in Ausbildung staerken</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-duration">⏱ 12 Monate (Verlängerung möglich)</span>
-        <span class="ust-tag ust-tag-access">📍 Regionalkoordinator / SES</span>
-        <span class="ust-tag ust-tag-req">✅ In Ausbildung</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Auf Wunsch Unterstützung durch Senior-Expert*innen als Vertrauenspersonen – zur Vermittlung von Stärke und Orientierung. Bei Schwierigkeiten in der Ausbildung oder drohendem Abbruch.</span></div>
+        <span class="ust-tag ust-tag-duration">12 Monate, Verlaengerung moeglich</span>
+        <span class="ust-tag ust-tag-access">Regionalkoordinator oder SES</span>
+        <span class="ust-tag ust-tag-req">In Ausbildung</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="teilzeit jobcenter">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">👩‍👧</div>
+        <div class="ust-card-emoji">AI</div>
         <div>
           <div class="ust-card-title">Aita 2024</div>
-          <div class="ust-card-subtitle">Träger: ZORA · Alleinerziehende Frauen in Teilzeitausbildung</div>
+          <div class="ust-card-subtitle">Traeger: ZORA - Alleinerziehende Frauen in Teilzeitausbildung</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Vorbereitung auf Teilzeitausbildung / Umschulung</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Vorbereitung auf Teilzeitausbildung oder Umschulung fuer Alleinerziehende</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-duration">⏱ Einstieg jederzeit</span>
-        <span class="ust-tag ust-tag-access">📍 Jobcenter</span>
-        <span class="ust-tag ust-tag-req">✅ ALG2-Bezug · Alleinerziehende Mütter / Frauen mit Pflegeaufgaben</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Unterstützung bei Kinderbetreuung, Suche nach Ausbildungsplatz sowie Übergang nach Ausbildungsstart bis zu 6 Monate.</span></div>
+        <span class="ust-tag ust-tag-duration">Einstieg jederzeit</span>
+        <span class="ust-tag ust-tag-access">Jobcenter</span>
+        <span class="ust-tag ust-tag-req">ALG2-Bezug, alleinerziehende Muetter oder Frauen mit Pflegeaufgaben</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="teilzeit">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">⏰</div>
+        <div class="ust-card-emoji">AQT</div>
         <div>
           <div class="ust-card-title">AQTAdigi+</div>
-          <div class="ust-card-subtitle">Träger: Neue Arbeit · Ausbildung &amp; Qualifizierung in Teilzeit</div>
+          <div class="ust-card-subtitle">Traeger: Neue Arbeit - Ausbildung und Qualifizierung in Teilzeit</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildung in Teilzeit für Alleinerziehende und Menschen mit Pflegeaufgaben</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildung in Teilzeit fuer Alleinerziehende und Menschen mit Pflegeaufgaben</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-age">🧑 Über 25 Jahre</span>
-        <span class="ust-tag ust-tag-duration">⏱ Einstieg jederzeit</span>
-        <span class="ust-tag ust-tag-req">✅ ALG I oder ALG II-Bezug</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Zunächst Orientierung, Praktika. Teilzeitausbildung in externen Betrieben möglich, Qualifizierung intern. Für Alleinerziehende, Menschen mit Behinderung oder Pflegeaufgaben, mit und ohne Migrationshintergrund.</span></div>
+        <span class="ust-tag ust-tag-age">Ueber 25 Jahre</span>
+        <span class="ust-tag ust-tag-duration">Einstieg jederzeit</span>
+        <span class="ust-tag ust-tag-req">ALG I oder ALG II-Bezug</span>
       </div>
     </div>
 
     <div class="ust-card" data-tags="kein-platz jobcenter">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🏗️</div>
+        <div class="ust-card-emoji">BaE</div>
         <div>
-          <div class="ust-card-title">BaE / BaEplus</div>
-          <div class="ust-card-subtitle">Berufsausbildung in außerbetrieblichen Einrichtungen · Träger: DAA, IB / Caritas + eva</div>
+          <div class="ust-card-title">BaE und BaEplus</div>
+          <div class="ust-card-subtitle">Berufsausbildung in ausserbetrieblichen Einrichtungen - Traeger: DAA, IB / Caritas, eva</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildung für Jugendliche, die keinen Platz auf dem allgemeinen Ausbildungsmarkt finden</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Ausbildung fuer Jugendliche ohne Platz auf dem allgemeinen Ausbildungsmarkt</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-access">📍 BaE: Berufsberatung · BaEplus: Jobcenter</span>
-        <span class="ust-tag ust-tag-req">✅ BaE: keine Erstausbildung · BaEplus: ALG2 + Ausbildungsreife</span>
+        <span class="ust-tag ust-tag-access">BaE: Berufsberatung - BaEplus: Jobcenter</span>
+        <span class="ust-tag ust-tag-req">BaE: keine Erstausbildung - BaEplus: ALG2 und Ausbildungsreife</span>
       </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
+      <button class="ust-details-btn" onclick="ustToggle(this)">Mehr erfahren</button>
       <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Kooperation zwischen Bildungsträger und Betrieb. Teilzeit möglich (BaE). Nur betriebliche Ausbildungen ohne Vorvertrag. Keine freien Berufe (bspw. MFA, ZMFA, RechtsanwaltsFA).</span></div>
-        <div class="ust-details-row"><span class="ust-details-row-label">Hinweis:</span><span>BaE (i.d.R. 6 Monate Berufsvorbereitung als Voraussetzung) · BaEplus über Jobcenter mit ALG2-Bezug</span></div>
+        <div class="ust-details-row"><span class="ust-details-row-label">Was:</span><span>Kooperation Bildungstraeger und Betrieb. Teilzeit bei BaE moeglich. Nur betriebliche Ausbildungen ohne Vorvertrag. Keine freien Berufe wie MFA, ZMFA, RechtsanwaltsFA.</span></div>
       </div>
     </div>
 
     <div class="ust-card" data-tags="kein-platz">
       <div class="ust-card-header">
-        <div class="ust-card-emoji">🌟</div>
+        <div class="ust-card-emoji">AC</div>
         <div>
           <div class="ust-card-title">Ausbildungschance</div>
-          <div class="ust-card-subtitle">Träger: Caritas + eva</div>
+          <div class="ust-card-subtitle">Traeger: Caritas und eva</div>
         </div>
       </div>
-      <div class="ust-card-goal"><strong>Ziel:</strong> Geförderte Ausbildung für Jugendliche ohne Unterstützung durch Jobcenter oder Berufsberatung</div>
+      <div class="ust-card-goal"><strong>Ziel:</strong> Gefoerderte Ausbildung fuer Jugendliche ohne Unterstuetzung durch Jobcenter oder Berufsberatung</div>
       <div class="ust-tags">
-        <span class="ust-tag ust-tag-access">📍 JobCon</span>
-        <span class="ust-tag ust-tag-req">✅ Kein ALG2-Bezug · Ausbildungsreife</span>
-      </div>
-      <button class="ust-details-btn" onclick="ustToggleDetails(this)">▼ Mehr erfahren</button>
-      <div class="ust-details-body">
-        <div class="ust-details-row"><span class="ust-details-row-label">Was?</span><span>Kooperation Bildungsträger + Betrieb. Nur betriebliche Ausbildungen ohne Vorvertrag. Keine freien Berufe möglich (bspw. MFA, ZMFA, RechtsanwaltsFA).</span></div>
+        <span class="ust-tag ust-tag-access">JobCon</span>
+        <span class="ust-tag ust-tag-req">Kein ALG2-Bezug, Ausbildungsreife</span>
       </div>
     </div>
 
   </div>
-
-</div><!-- end ust-panel-waehrend -->
+</div>
+<!-- END ust-panel-waehrend -->
 
 <script>
-  function ustSetPhase(phase) {
-    // Update panel visibility
-    document.querySelectorAll('.ust-phase-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('ust-panel-' + phase).classList.add('active');
-    // Update buttons
-    document.querySelectorAll('.ust-phase-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('ust-phase-btn-' + phase).classList.add('active');
-    // Reset filters for that panel
-    ustFilter(phase, 'alle');
-  }
+(function() {
+  window.ustSetPhase = function(phase) {
+    document.querySelectorAll('.ust-phase-panel').forEach(function(p) {
+      p.classList.remove('ust-active');
+    });
+    var panel = document.getElementById('ust-panel-' + phase);
+    if (panel) panel.classList.add('ust-active');
+    document.querySelectorAll('.ust-phase-btn').forEach(function(b) {
+      b.classList.remove('ust-active');
+    });
+    var btn = document.getElementById('ust-pbtn-' + phase);
+    if (btn) btn.classList.add('ust-active');
+    ustDoFilter(phase, 'alle');
+  };
 
-  function ustFilter(phase, tag) {
-    // Update filter chip states
-    document.querySelectorAll('#ust-panel-' + phase + ' .ust-filter-chip').forEach(c => c.classList.remove('active'));
-    const activeChip = document.getElementById('ust-f-' + phase + '-' + tag);
-    if (activeChip) activeChip.classList.add('active');
-    // Show/hide cards
-    const panel = document.getElementById('ust-panel-' + phase);
-    panel.querySelectorAll('.ust-card').forEach(card => {
+  window.ustDoFilter = function(phase, tag) {
+    document.querySelectorAll('#ust-panel-' + phase + ' .ust-filter-chip').forEach(function(c) {
+      c.classList.remove('ust-chip-active');
+    });
+    var chip = document.getElementById('ust-fc-' + phase + '-' + tag);
+    if (chip) chip.classList.add('ust-chip-active');
+    var panel = document.getElementById('ust-panel-' + phase);
+    if (!panel) return;
+    panel.querySelectorAll('.ust-card').forEach(function(card) {
       if (tag === 'alle') {
         card.setAttribute('data-hidden', 'false');
       } else {
-        const tags = card.getAttribute('data-tags') || '';
-        card.setAttribute('data-hidden', tags.includes(tag) ? 'false' : 'true');
+        var tags = card.getAttribute('data-tags') || '';
+        card.setAttribute('data-hidden', tags.indexOf(tag) !== -1 ? 'false' : 'true');
       }
     });
-  }
+  };
 
-  function ustToggleDetails(btn) {
-    const body = btn.nextElementSibling;
-    const open = body.classList.toggle('open');
-    btn.textContent = open ? '▲ Weniger anzeigen' : '▼ Mehr erfahren';
-  }
+  window.ustToggle = function(btn) {
+    var body = btn.nextElementSibling;
+    var isOpen = body.classList.toggle('ust-open');
+    btn.textContent = isOpen ? 'Weniger anzeigen' : 'Mehr erfahren';
+  };
+})();
 </script>
 
-</div><!-- end unterstuetzung-tab -->
+<!-- END unterstuetzung-tab -->
